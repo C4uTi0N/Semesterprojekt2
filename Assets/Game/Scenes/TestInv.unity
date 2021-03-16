@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 73900832}
   - component: {fileID: 73900831}
   - component: {fileID: 73900830}
+  - component: {fileID: 73900834}
   m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Untagged
@@ -218,6 +219,19 @@ Transform:
   m_Father: {fileID: 1317349023}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &73900834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73900829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28935f1cee0ce25499a8fb72229ba9e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushWall: {fileID: 0}
 --- !u!1 &236918873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,7 +1663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2092039950
 RectTransform:
   m_ObjectHideFlags: 0
