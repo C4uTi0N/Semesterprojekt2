@@ -1,0 +1,8 @@
+﻿title: Program
+---
+<<declare $kitchen = false>>
+<<declare $foundTuna = false>>
+<<declare $fridge = false>>
+<<declare $cupboard = false>>
+<<declare $freezer = false>>
+===

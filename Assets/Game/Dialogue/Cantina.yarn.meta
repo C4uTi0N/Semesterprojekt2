@@ -10,53 +10,49 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
   baseLanguageID: en-US
   stringIDs:
-  - Cantina-hallway-0
-  - Cantina-hallway-1
-  - Cantina-hallway-2
-  - Cantina-cantina-3
-  - Cantina-cantina-4
-  - Cantina-cantina-5
-  - Cantina-cantina-6
-  - Cantina-cantina-7
-  - Cantina-cantina-8
-  - Cantina-buffet-9
-  - Cantina-buffet-10
-  - Cantina-buffet-11
-  - Cantina-buffet-12
-  - Cantina-buffet-13
-  - Cantina-kitchen-14
-  - Cantina-kitchen-15
-  - Cantina-kitchen-16
-  - Cantina-kitchen-17
-  - Cantina-kitchen-18
-  - Cantina-kitchen-19
-  - Cantina-fridge-20
-  - Cantina-fridge-21
-  - Cantina-fridge-22
-  - Cantina-fridge-23
-  - Cantina-cupboard-24
-  - Cantina-cupboard-25
-  - Cantina-cupboard-26
-  - Cantina-freezer-27
-  - Cantina-freezer-28
-  - Cantina-freezer-29
-  - Cantina-table-30
-  - Cantina-table-31
-  - Cantina-table-32
-  - Cantina-table-33
-  - Cantina-table-34
-  - Cantina-table-35
-  - Cantina-Start-36
-  - Cantina-Start-37
-  compilationStatus: 1
-  isSuccesfullyCompiled: 1
-  compilationErrorMessage: 'Error on line 26 at position 1:
-
-    mismatched input
-    ''==='' expecting COMMAND_START
-
-    ===
-
-    ^^^'
+  - line:Cantina-Start-0
+  - line:Cantina-Start-1
+  - line:Cantina-hallway-2
+  - line:Cantina-hallway-3
+  - line:Cantina-hallway-4
+  - line:Cantina-cantina-5
+  - line:Cantina-cantina-6
+  - line:Cantina-cantina-7
+  - line:Cantina-cantina-8
+  - line:Cantina-cantina-9
+  - line:Cantina-cantina-10
+  - line:Cantina-cantina-11
+  - line:Cantina-buffet-12
+  - line:Cantina-buffet-13
+  - line:Cantina-buffet-14
+  - line:Cantina-buffet-15
+  - line:Cantina-buffet-16
+  - line:Cantina-kitchen-17
+  - line:Cantina-kitchen-18
+  - line:Cantina-kitchen-19
+  - line:Cantina-kitchen-20
+  - line:Cantina-kitchen-21
+  - line:Cantina-kitchen-22
+  - line:Cantina-kitchen-23
+  - line:Cantina-fridge-24
+  - line:Cantina-fridge-25
+  - line:Cantina-fridge-26
+  - line:Cantina-fridge-27
+  - line:Cantina-cupboard-28
+  - line:Cantina-cupboard-29
+  - line:Cantina-cupboard-30
+  - line:Cantina-freezer-31
+  - line:Cantina-freezer-32
+  - line:Cantina-freezer-33
+  - line:Cantina-table-34
+  - line:Cantina-table-35
+  - line:Cantina-table-36
+  - line:Cantina-table-37
+  - line:Cantina-table-38
+  - line:Cantina-table-39
+  AnyImplicitStringIDs: 1
+  isSuccesfullyParsed: 1
+  parseErrorMessage: 
   baseLanguage: {fileID: 7128917941130120860, guid: a2c9a55ffe022614aaa2be5d5bf4e49d, type: 3}
   localizations: []
+  localizationDatabase: {instanceID: 0}

@@ -1,54 +1,53 @@
+title: Start
+tags:
+---
+Enter the hallway to start Demo
+
+[[hallway]]
+===
 title: hallway
-tags: 
-colorID: 0
-position: 300,100
+tags:
 ---
 Smol: The cantina!
 Bigg: Told you it was close, didn't I?
-
 [[Enter cantina|cantina]]
+
 ===
 title: cantina
-tags: 
-colorID: 0
-position: 600,100
+tags:
 ---
 <<if $kitchen is false>>
-    Smol: Eughh! Smells like shit!
-    Bigg: Language!
-    Smol: Sorry... Smells poopy!
-    Bigg: Better.
-    Bigg: The smell is from the abandoned buffet i guess.
+	Smol: Eughh! Smells like shit!
+	Bigg: Language!
+	Smol: Sorry... Smells poopy!
+	Bigg: Better.
+	Bigg: The smell is from the abandoned buffet i guess.
 
-    [[Approach buffet|buffet]]
+	[[Approach buffet|buffet]]
 <<endif>>
 
 <<if $foundTuna is true>>
-    [[Find a table|table]]
+	[[Find a table|table]]
 <<endif>>
 ===
 title: buffet
-tags: 
-colorID: 0
-position: 900,-100
+tags:
 ---
 Smol: Eww, disgusting!
 Bigg: I hope there's still something edible.
 Smol: Aww, even the pancakes are rotten...
-Bigg: Let's try the kitchen.
+Bigg: Let's try the kitchen
 
 [[Enter kitchen|kitchen]]
 ===
 title: kitchen
-tags: 
-colorID: 0
-position: 900,300
+tags:
 ---
+body:
 <<set $kitchen to true>>
-
 <<if $fridge is false && $cupboard is false && $freezer is false>>
-    Smol: It's even worse in here!
-    Bigg: Yup.
+	Smol: It's even worse in here!
+	Bigg: Yup.
 <<endif>>
 
 [[Inspect fridge|fridge]]
@@ -56,37 +55,30 @@ position: 900,300
 [[inspect freezer|freezer]]
 
 <<if $foundTuna is true>>
-    [[Leave kitchen|cantina]]
+	[[Leave kitchen|cantina]]
 <<endif>>
 ===
 title: fridge
-tags: 
-colorID: 0
-position: 1200,0
+tags:
 ---
 <<set $fridge to true>>
 Smol: Is that mold growing out from the door?
-Bigg: I think so.
-Smol: Eww!
+Bigg: I think so.\nSmol: Eww!
 
-[[keep looking|kitchen]]
+[[keep looking|kitchen]]",
 ===
 title: cupboard
-tags: 
-colorID: 0
-position: 1200,300
+tags:
 ---
 <<set $cupboard to true>>
+<<set $foundTuna to true>>
 Smol: Tuna!
 Bigg: Still good. Let's get out of this stench.
 
-<<set $foundTuna to true>>
 [[keep looking|kitchen]]
 ===
 title: freezer
-tags: 
-colorID: 0
-position: 1200,600
+tags:
 ---
 <<set $freezer to true>>
 Smol: I don't think its working.
@@ -95,22 +87,12 @@ Bigg: No power, no cooling
 [[keep looking|kitchen]]
 ===
 title: table
-tags: 
-colorID: 0
-position: 600,400
+tags:
 ---
 Bigg: You eat like a little piglet.
 Smol: HWUNGRWI
 Bigg: Don't talk when you're eating. You might choke.
 Smol: *gulp* Sorry
 Smol: ... Aren't you gonna eat?
-Bigg: Nah, I'm not "hwungwi". Eat up.
-===
-title: Start
-tags: 
-colorID: 0
-position: 0,100
----
-Enter the hallway to start Demo 
-[[Enter hallway|hallway]]
+Bigg: Nah, I'm not \"hwungwi\". Eat up.\n",
 ===

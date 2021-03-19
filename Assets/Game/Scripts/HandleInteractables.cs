@@ -28,6 +28,7 @@ public class HandleInteractables : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hitItem.onInteraction();
+                    onInteract.Invoke();
                 }
             }
         }
@@ -38,4 +39,5 @@ public class HandleInteractables : MonoBehaviour
         //Ray ray = Physics.Raycast(player.position, player.TransformDirection(Vector3.forward), 1.5f);
         Debug.DrawRay(player.position, player.TransformDirection(Vector3.forward) * 1.5f, Color.red);                                          // Middle
     }
+    public UnityEngine.Events.UnityEvent onInteract;
 }

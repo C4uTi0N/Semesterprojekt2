@@ -1,0 +1,54 @@
+fileFormatVersion: 2
+guid: 34f447da2f8558140bf0a18eb703df82
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 053561912b1654d80a424bb0696a74ae, type: 3}
+  sourceScripts:
+  - {fileID: 6391573757903218779, guid: a2c9a55ffe022614aaa2be5d5bf4e49d, type: 3}
+  compileError: 'Error in Assets/Game/Dialogue/Cantina.yarn line 19
+
+    <<if $kitchen
+    is false>>
+
+    Undeclared variable $kitchen'
+  serializedDeclarations:
+  - name: $kitchen
+    type: 3
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    sourceYarnAsset: {instanceID: 0}
+  - name: $foundTuna
+    type: 3
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    sourceYarnAsset: {instanceID: 0}
+  - name: $fridge
+    type: 3
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    sourceYarnAsset: {instanceID: 0}
+  - name: $cupboard
+    type: 3
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    sourceYarnAsset: {instanceID: 0}
+  - name: $freezer
+    type: 3
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: 
+    sourceYarnAsset: {instanceID: 0}
