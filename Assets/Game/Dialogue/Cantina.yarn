@@ -2,15 +2,13 @@ title: Start
 tags:
 ---
 Enter the hallway to start Demo
-
-[[hallway]]
 ===
 title: hallway
 tags:
 ---
 Smol: The cantina!
 Bigg: Told you it was close, didn't I?
-[[Enter cantina|cantina]]
+
 
 ===
 title: cantina
@@ -22,8 +20,6 @@ tags:
 	Smol: Sorry... Smells poopy!
 	Bigg: Better.
 	Bigg: The smell is from the abandoned buffet i guess.
-
-	[[Approach buffet|buffet]]
 <<endif>>
 
 <<if $foundTuna is true>>
@@ -38,7 +34,6 @@ Bigg: I hope there's still something edible.
 Smol: Aww, even the pancakes are rotten...
 Bigg: Let's try the kitchen
 
-[[Enter kitchen|kitchen]]
 ===
 title: kitchen
 tags:

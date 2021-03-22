@@ -1,13 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     //Components
     private Rigidbody rb;                                                   // Set Rigidbody component to "rb"
-
     private Transform player;                                               // Set Transform component to "player"
-    private Camera playerCamera;
+    private Camera playerCamera;                                            // Set Camera component to "playerCamera"
 
     // Movement input Axis & Direction
     private float xAxisMovement;                                            // Movement on the "X" axis
@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();                                     // Set "rb" to Rigidbody of attached Gameobject
-        rb.freezeRotation = true;                                           // Disable rotatoin trhough rigidbody
-        rb.useGravity = false;                                              // Disable Rigidbody gravity
+        rb.freezeRotation = true;                                           // Disable rotatoin through rigidbody
+        rb.useGravity = false;                                              // Disable Gravity from Rigidbody
 
         player = GetComponent<Transform>();                                 // Set "player" to Transform of attached gameobject
 
@@ -63,22 +63,24 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && !isVaulting)
         {
             xAxisMovement = Input.GetAxis("Horizontal") * movementSpeed;                // Get keyboard input for "A", "D" and "Right/Left Arrow", and apply movement speed;
-            rb.velocity = new Vector3(xAxisMovement, rb.velocity.y, rb.velocity.z);     // Apply movement speed and direction to player velocity
+            rb.velocity = new Vector2(xAxisMovement, rb.velocity.y);                    // Apply movement speed and direction to player velocity
 
             if (rb.velocity.magnitude > maxSpeed)                                       // Clamp player movement speed to max speed
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
             }
 
+            
             // Rotate player in movement direction
             if (rb.velocity.x > 0)
             {
-                player.rotation = Quaternion.Euler(0, 90, 0);     // Set player rotation on Y axis to 90 deg
+                player.rotation = Quaternion.Euler(0, 0, 0);     // Set player rotation on Y axis to 90 deg
             }
             if (rb.velocity.x < 0)
             {
-                player.rotation = Quaternion.Euler(0, -90, 0);    // Set player rotation on Y axis to -90 deg
+                player.rotation = Quaternion.Euler(0, 180, 0);    // Set player rotation on Y axis to -90 deg
             }
+            
         }
     }
 
@@ -94,7 +96,6 @@ public class PlayerController : MonoBehaviour
 
             if (!canVault)
             {
-                rb.velocity = player.forward * vaultSpeed;
                 StartCoroutine(VaultTimer());
             }
         }
@@ -102,6 +103,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator VaultTimer()    // Timer for when to disable vaulting (set "isVaulting" to false)
     {
+        rb.velocity = player.right * vaultSpeed;
         yield return new WaitForSeconds((1 / vaultSpeed) / 5);  // Wait "x" seconds before disabling vaulting (set "isVaulting" to false), time is proportinal with vault speed
         isVaulting = false;
     }
@@ -109,13 +111,16 @@ public class PlayerController : MonoBehaviour
 
     private void CheckVault()
     {
+        // Size of collision box
+        Vector2 boxSize = new Vector2(0.1f, 1f);
+
         // Raycast for "canVault" bool (true if either raycast hits other object)
-        if (Physics.Raycast(player.position + Vector3.up, player.TransformDirection(Vector3.forward), 0.6f) || Physics.Raycast(player.position, player.TransformDirection(Vector3.forward), 0.6f) || Physics.Raycast(player.position + Vector3.down, player.TransformDirection(Vector3.forward), 0.6f))
+        bool vaultCheck = Physics.BoxCast(player.position + player.TransformDirection(Vector2.right * 0.39f), boxSize, player.TransformDirection(Vector2.right), Quaternion.identity, 0.1f);
+        
+        if (vaultCheck)
         {
             canVault = true;
-        }
-        else
-        {
+        } else {
             canVault = false;
         }
 
@@ -125,29 +130,38 @@ public class PlayerController : MonoBehaviour
             isVaulting = true;
         }
 
-        // Raycast visual for "canVault" bool (true if raycast hits other object)
-        Debug.DrawRay(player.position + Vector3.up, player.TransformDirection(Vector3.forward) * 0.6f, Color.cyan);               // Upper
-        Debug.DrawRay(player.position, player.TransformDirection(Vector3.forward) * 0.6f, Color.cyan);                                          // Middle
-        Debug.DrawRay(player.position + Vector3.down , player.TransformDirection(Vector3.forward) * 0.6f, Color.cyan);    // Lower
+        Color color = Color.yellow;
+        if (canVault)
+        {
+            color = Color.green;
+        } else {
+            color = Color.yellow;
+        }
+
+        Debug.DrawRay(player.position + player.TransformDirection(0.5f, boxSize.y, 0), player.TransformDirection(Vector2.right) * (boxSize.x - 0.01f), color);        // Top
+        Debug.DrawRay(player.position + player.TransformDirection(0.5f, -boxSize.y, 0), player.TransformDirection(Vector2.right) * (boxSize.x - 0.01f), color);       // Buttom
+        Debug.DrawRay(player.position + player.TransformDirection(0.49f + boxSize.x, -boxSize.y, 0), Vector2.up * (boxSize.y * 2), color);                   // Center
     }
 
 
     private void CheckGrounded()
     {
-        // Raycast for "GroundCheck" bool (true if  either raycast hits other object)
-        if (Physics.Raycast(player.position + new Vector3(0.5f, -1, 0), player.TransformDirection(Vector3.down), 0.05f) || Physics.Raycast(player.position + Vector3.down, player.TransformDirection(Vector3.down), 0.05f) || Physics.Raycast(player.position + new Vector3(-0.5f, -1, 0), player.TransformDirection(Vector3.down), 0.05f))
+        // Size of collision box
+        Vector2 boxSize = new Vector2(0.5f, 0.1f);
+        isGrounded = Physics.BoxCast(player.position + player.TransformDirection(Vector2.down * 0.89f), boxSize, player.TransformDirection(Vector2.down), Quaternion.identity, 0.1f);
+
+        Color color = Color.yellow;
+        if (isGrounded)
         {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;                     // set "isGrounded" to false
+            color = Color.green;
+        } else {
+            color = Color.yellow;
         }
 
-        // Raycast visual for "GroundCheck" bools (true if raycast hits other object)
-        Debug.DrawRay(player.position + new Vector3(0.5f, -1, 0), player.TransformDirection(Vector3.down) * 0.05f, Color.yellow);   // Front
-        Debug.DrawRay(player.position + new Vector3(-0.5f, -1, 0), player.TransformDirection(Vector3.down) * 0.05f, Color.yellow);  // Back
-        Debug.DrawRay(player.position + Vector3.down, player.TransformDirection(Vector3.down) * 0.05f, Color.yellow);               // Middle
+        Debug.DrawRay(player.position + new Vector3(boxSize.x, -1), Vector2.down * (boxSize.y - 0.01f), color);                 // Front
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -1), Vector2.down * (boxSize.y - 0.01f), color);                // Rear
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -0.99f -boxSize.y), Vector2.right * (boxSize * 2), color);      // Center
+        
     }
 
     private void CameraFollower()
@@ -159,7 +173,7 @@ public class PlayerController : MonoBehaviour
         // if the player is not vaulting, apply gravity/downforce
         if (!isVaulting)
         {
-            rb.AddForce(Vector3.down * gravity);
+            rb.AddForce(Vector2.down * gravity);
         }
     }
 }

@@ -2,24 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallInteractable : MonoBehaviour, Interactable
+public class DoorInteractable : MonoBehaviour, Interactable
 {
-    public Transform gateWall;
+    public Transform door;
     public UnityEngine.Events.UnityEvent onInteract;
 
     public string getInteractableText()
     {
-        return "press [E] to open the gate";
+        return "press [E] to open the door";
     }
 
     public void onInteraction()
     {
-        gateWall.transform.Translate(Vector3.up * 2.2f);
         onInteract.Invoke();
     }
 
     private void Awake()
     {
-        gateWall = GetComponent<Transform>();
+        door = GetComponent<Transform>();
     }
 }
