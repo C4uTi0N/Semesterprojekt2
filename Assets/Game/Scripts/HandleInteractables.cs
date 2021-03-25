@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class HandleInteractables : MonoBehaviour
 {
     private Transform player;
-    public Text gate;
+    private Text interactable;
     public UnityEngine.Events.UnityEvent continueDialogue;
 
     private void Awake()
     {
         player = GetComponent<Transform>();
+
+        interactable = GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
@@ -31,28 +33,29 @@ public class HandleInteractables : MonoBehaviour
             var hitItemForward = hitInfoForward.collider.GetComponent<Interactable>();
             if (hitItemForward != null)
             {
-                gate.text = hitItemForward.getInteractableText();
+                interactable.text = hitItemForward.getInteractableText();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hitItemForward.onInteraction();
                 }
             }
-  
-        } else {
+
+        }
+        else
+        {
             if (inwardsRaycast)
             {
                 var hitItemInwards = hitInfoInwards.collider.GetComponent<Interactable>();
                 if (hitItemInwards != null)
                 {
-                    gate.text = hitItemInwards.getInteractableText();
+                    interactable.text = hitItemInwards.getInteractableText();
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         hitItemInwards.onInteraction();
                     }
                 }
-
-            } else { if (gate.text != "") { gate.text = ""; } }
-        } 
+            }
+        }
 
 
 

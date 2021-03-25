@@ -2,13 +2,13 @@ title: Start
 tags:
 ---
 Enter the hallway to start Demo
+
 ===
 title: hallway
 tags:
 ---
 Smol: The cantina!
 Bigg: Told you it was close, didn't I?
-
 
 ===
 title: cantina
@@ -23,8 +23,10 @@ tags:
 <<endif>>
 
 <<if $foundTuna is true>>
-	[[Find a table|table]]
+	-> Find a table
+		<<jump table>>
 <<endif>>
+
 ===
 title: buffet
 tags:
@@ -45,22 +47,29 @@ body:
 	Bigg: Yup.
 <<endif>>
 
-[[Inspect fridge|fridge]]
-[[inspect cupboard|cupboard]]
-[[inspect freezer|freezer]]
+-> Inspect fridge
+	<<jump fridge>>
+-> Inspect cupboard
+	<<jump cupboard>>
+-> Inspect freezer
+	<<jump freezer>>
 
 <<if $foundTuna is true>>
-	[[Leave kitchen|cantina]]
+	<<jump cantina>>
 <<endif>>
+
 ===
 title: fridge
 tags:
 ---
 <<set $fridge to true>>
 Smol: Is that mold growing out from the door?
-Bigg: I think so.\nSmol: Eww!
+Bigg: I think so.
+Smol: Eww!
 
-[[keep looking|kitchen]]",
+-> keep looking
+	<<jump kitchen>>
+
 ===
 title: cupboard
 tags:
@@ -70,7 +79,9 @@ tags:
 Smol: Tuna!
 Bigg: Still good. Let's get out of this stench.
 
-[[keep looking|kitchen]]
+ -> keep looking
+	<<jump kitchen>>
+
 ===
 title: freezer
 tags:
@@ -79,7 +90,9 @@ tags:
 Smol: I don't think its working.
 Bigg: No power, no cooling
 
-[[keep looking|kitchen]]
+-> keep looking
+	<<jump kitchen>>
+
 ===
 title: table
 tags:

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallInteractable : MonoBehaviour, Interactable
+public class GateInteractable : MonoBehaviour, Interactable
 {
-    public Transform gateWall;
+    private Transform gate;
     public UnityEngine.Events.UnityEvent onInteract;
 
     public string getInteractableText()
@@ -14,12 +14,12 @@ public class WallInteractable : MonoBehaviour, Interactable
 
     public void onInteraction()
     {
-        gateWall.transform.Translate(Vector3.up * 2.2f);
+        gate.transform.Translate(Vector3.up * 2.2f);
         onInteract.Invoke();
     }
 
     private void Awake()
     {
-        gateWall = GetComponent<Transform>();
+        gate = GetComponent<Transform>();
     }
 }

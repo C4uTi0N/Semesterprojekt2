@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DoorInteractable : MonoBehaviour, Interactable
 {
-    public Transform door;
     public UnityEngine.Events.UnityEvent onInteract;
 
     public string getInteractableText()
@@ -15,10 +14,5 @@ public class DoorInteractable : MonoBehaviour, Interactable
     public void onInteraction()
     {
         onInteract.Invoke();
-    }
-
-    private void Awake()
-    {
-        door = GetComponent<Transform>();
     }
 }
