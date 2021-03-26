@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player settings", order = 1)]
     public float gravityMultiplier = 5;                                     // Gravity Multiplier
-
     public float movementSpeed = 10f;                                       // Movement speed
     public float vaultSpeed = 5f;                                           // Vaulting speed
     public float maxSpeed = 20;                                             // Max movement speed
@@ -28,11 +27,10 @@ public class PlayerController : MonoBehaviour
     public bool canVault;                                                   // Bool to check if player can vault
     public bool isVaulting;                                                 // Bool to check if player is vaulting
 
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();                                     // Set "rb" to Rigidbody of attached Gameobject
-        rb.freezeRotation = true;                                           // Disable rotatoin through rigidbody
+        rb.freezeRotation = true;                                           // Disable rotation through rigidbody
         rb.useGravity = false;                                              // Disable Gravity from Rigidbody
 
         player = GetComponent<Transform>();                                 // Set "player" to Transform of attached gameobject
@@ -84,7 +82,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     private void Vault()
     {
         if (isVaulting)
@@ -124,7 +121,7 @@ public class PlayerController : MonoBehaviour
             canVault = false;
         }
 
-        // If canVault is true and the player presses splace, set "isVaulting" to true
+        // If canVault is true and the player presses space, set "isVaulting" to true
         if (Input.GetKeyDown(KeyCode.Space) && canVault)
         {
             isVaulting = true;
@@ -148,7 +145,7 @@ public class PlayerController : MonoBehaviour
     {
         // Size of collision box
         Vector2 boxSize = new Vector2(0.5f, 0.1f);
-        isGrounded = Physics.BoxCast(player.position + player.TransformDirection(Vector2.down * 0.89f), boxSize, player.TransformDirection(Vector2.down), Quaternion.identity, 0.1f);
+        isGrounded = Physics.BoxCast(player.position, boxSize, Vector2.down, Quaternion.identity, 1);
 
         Color color = Color.yellow;
         if (isGrounded)
@@ -158,9 +155,9 @@ public class PlayerController : MonoBehaviour
             color = Color.yellow;
         }
 
-        Debug.DrawRay(player.position + new Vector3(boxSize.x, -1), Vector2.down * (boxSize.y - 0.01f), color);                 // Front
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -1), Vector2.down * (boxSize.y - 0.01f), color);                // Rear
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -0.99f -boxSize.y), Vector2.right * (boxSize * 2), color);      // Center
+        Debug.DrawRay(player.position + new Vector3(boxSize.x, -1 -boxSize.y), Vector2.up, color);                 // Front
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -1 -boxSize.y), Vector2.up, color);                // Rear
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -1 -boxSize.y), Vector2.right * (boxSize * 2), color);      // Center
         
     }
 

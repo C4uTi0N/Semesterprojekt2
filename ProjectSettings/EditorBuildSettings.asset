@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Game/Scenes/Level 1-1 (Home).unity
+    guid: 1231c175d023f874489a154f49842a2e
+  - enabled: 1
+    path: Assets/Game/Scenes/Hallway.unity
+    guid: b99b97f5db0468a49ba09fd1c0eabc8d
+  - enabled: 1
+    path: Assets/Game/Scenes/Cantina.unity
+    guid: 55fb18876bf6e8846ac055d5eabac24e
   m_configObjects: {}

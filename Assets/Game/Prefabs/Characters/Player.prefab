@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 8084273535204176658}
   - component: {fileID: 8084273535204176659}
   m_Layer: 3
-  m_Name: Hand
+  m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 8084273536361677622}
   - component: {fileID: 8084273536361677623}
   - component: {fileID: 8084273536361677620}
-  - component: {fileID: 8084273536361677617}
+  - component: {fileID: 1494741084898746983}
   - component: {fileID: 8084273536361677621}
   - component: {fileID: 8084273536361677616}
   - component: {fileID: 8084273536361677619}
@@ -282,8 +282,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8084273536361677617
-BoxCollider:
+--- !u!136 &1494741084898746983
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -292,8 +292,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!54 &8084273536361677621
 Rigidbody:
@@ -342,7 +343,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570ed787d8c810047ab28576ddf57c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gate: {fileID: 0}
   continueDialogue:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Yarn.Unity.DialogueViewBase, YarnSpinner.Unity
+        m_MethodName: MarkLineComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

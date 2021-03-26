@@ -1,17 +1,17 @@
 title: Start
 tags:
 ---
-Enter the hallway to start Demo
+Enter the door to start Demo
 
 ===
-title: hallway
+title: Hallway
 tags:
 ---
 Smol: The cantina!
 Bigg: Told you it was close, didn't I?
 
 ===
-title: cantina
+title: Cantina
 tags:
 ---
 <<if $kitchen is false>>
@@ -28,7 +28,7 @@ tags:
 <<endif>>
 
 ===
-title: buffet
+title: Buffet
 tags:
 ---
 Smol: Eww, disgusting!
@@ -37,7 +37,7 @@ Smol: Aww, even the pancakes are rotten...
 Bigg: Let's try the kitchen
 
 ===
-title: kitchen
+title: Kitchen
 tags:
 ---
 body:

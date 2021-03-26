@@ -7,14 +7,15 @@ using UnityEngine.UI;
 public class HandleInteractables : MonoBehaviour
 {
     private Transform player;
+    private GameObject textObj;
     private Text interactable;
     public UnityEngine.Events.UnityEvent continueDialogue;
 
     private void Awake()
     {
         player = GetComponent<Transform>();
-
-        interactable = GetComponentInChildren<Text>();
+        textObj = GameObject.Find("Press [E] to interact");
+        interactable = textObj.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -54,6 +55,12 @@ public class HandleInteractables : MonoBehaviour
                         hitItemInwards.onInteraction();
                     }
                 }
+            } else 
+            { 
+                if (interactable.text != "")
+                { 
+                    interactable.text = ""; 
+                } 
             }
         }
 
