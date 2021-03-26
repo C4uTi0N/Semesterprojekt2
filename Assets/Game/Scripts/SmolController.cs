@@ -11,6 +11,7 @@ public class SmolController : MonoBehaviour
 
     public float speed = 3;
 
+    public float minDistance = 2;
     private float distance;
     
     public bool shouldFollow = false;
@@ -28,14 +29,14 @@ public class SmolController : MonoBehaviour
 
         if (shouldFollow)
         {
-            if (distance > 2)
+            if (distance > minDistance)
             {
                 rb.position = Vector2.Lerp(transform.position, target.position, speed / 100);
             }
         }
         
     }
-    public void SetBool(bool value)
+    public void ShouldFollow(bool value)
     {
         shouldFollow = value;
     }
