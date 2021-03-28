@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DoorInteractable : MonoBehaviour, Interactable
 {
+    public string pressETo = " enter/go to [destination name]";
     public UnityEngine.Events.UnityEvent onInteract;
 
     public string getInteractableText()
     {
-        return "press [E] to open the door";
+        return ("press [E] to " + pressETo);
     }
 
     public void onInteraction()

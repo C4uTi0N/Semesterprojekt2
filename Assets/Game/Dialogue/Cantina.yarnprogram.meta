@@ -10,12 +10,7 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 053561912b1654d80a424bb0696a74ae, type: 3}
   sourceScripts:
   - {fileID: 6391573757903218779, guid: a2c9a55ffe022614aaa2be5d5bf4e49d, type: 3}
-  compileError: 'Error in Assets/Game/Dialogue/Cantina.yarn line 19
-
-    <<if $kitchen
-    is false>>
-
-    Undeclared variable $kitchen'
+  compileError: 
   serializedDeclarations:
   - name: $kitchen
     type: 3
