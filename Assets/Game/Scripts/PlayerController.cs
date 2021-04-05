@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;                                                 // Bool to check if player is on ground
     public bool canVault;                                                   // Bool to check if player can vault
     public bool isVaulting;                                                 // Bool to check if player is vaulting
-
+    public bool isInteracting;                                              // Bool to check if player is interacting
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();                                     // Set "rb" to Rigidbody of attached Gameobject
@@ -68,17 +68,18 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = rb.velocity.normalized * maxSpeed;
             }
 
-            
-            // Rotate player in movement direction
-            if (rb.velocity.x > 0)
+            if (!isInteracting)
             {
-                player.rotation = Quaternion.Euler(0, 0, 0);     // Set player rotation on Y axis to 90 deg
+                // Rotate player in movement direction
+                if (rb.velocity.x > 0)
+                {
+                    player.rotation = Quaternion.Euler(0, 0, 0);     // Set player rotation on Y axis to 90 deg
+                }
+                if (rb.velocity.x < 0)
+                {
+                    player.rotation = Quaternion.Euler(0, 180, 0);    // Set player rotation on Y axis to -90 deg
+                }
             }
-            if (rb.velocity.x < 0)
-            {
-                player.rotation = Quaternion.Euler(0, 180, 0);    // Set player rotation on Y axis to -90 deg
-            }
-            
         }
     }
 
@@ -114,7 +115,7 @@ public class PlayerController : MonoBehaviour
         // Raycast for "canVault" bool (true if either raycast hits other object)
         bool vaultCheck = Physics.BoxCast(player.position + player.TransformDirection(Vector2.right * 0.39f), boxSize, player.TransformDirection(Vector2.right), Quaternion.identity, 0.1f);
         
-        if (vaultCheck)
+        if (vaultCheck && !isInteracting)
         {
             canVault = true;
         } else {
@@ -173,4 +174,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.down * gravity);
         }
     }
+
+
 }

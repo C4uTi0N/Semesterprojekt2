@@ -9,6 +9,7 @@ public class HandleInteractables : MonoBehaviour
     private Transform player;
     private GameObject textObj;
     private Text interactable;
+    private PlayerController playerController;
     public UnityEngine.Events.UnityEvent continueDialogue;
 
     private void Awake()
@@ -16,7 +17,33 @@ public class HandleInteractables : MonoBehaviour
         player = GetComponent<Transform>();
         textObj = GameObject.Find("Press [E] to interact");
         interactable = textObj.GetComponent<Text>();
+        playerController = GetComponent<PlayerController>();
     }
+
+    void handleInteraction(Interactable hit)
+    {
+        interactable.text = hit.getInteractableText();
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            hit.onInteraction();
+        }
+    }
+
+    void handleInteraction(ContiniousInteractable hit)
+    {
+        interactable.text = hit.getInteractableText();
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            hit.onInteractionStart();
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            hit.onInteractionEnd();
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -31,14 +58,20 @@ public class HandleInteractables : MonoBehaviour
 
         if (forwardRaycast)
         {
-            var hitItemForward = hitInfoForward.collider.GetComponent<Interactable>();
-            if (hitItemForward != null)
+
+            var forwardInteractable = hitInfoForward.collider.GetComponent<Interactable>();
+            if (forwardInteractable != null)
             {
-                interactable.text = hitItemForward.getInteractableText();
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    hitItemForward.onInteraction();
-                }
+                handleInteraction(forwardInteractable);
+            }
+
+            var forwardContinousInteractable = hitInfoForward.collider.GetComponent<ContiniousInteractable>();
+
+            if (forwardContinousInteractable != null)
+            {
+                handleInteraction(forwardContinousInteractable);
+                
+                
             }
 
         }
@@ -55,12 +88,14 @@ public class HandleInteractables : MonoBehaviour
                         hitItemInwards.onInteraction();
                     }
                 }
-            } else 
-            { 
+            }
+            else
+            {
                 if (interactable.text != "")
-                { 
-                    interactable.text = ""; 
-                } 
+                {
+                    interactable.text = "";
+                }
+
             }
         }
 
@@ -75,7 +110,9 @@ public class HandleInteractables : MonoBehaviour
         if (forwardRaycast)
         {
             colorForwards = Color.green;
-        } else {
+        }
+        else
+        {
             colorForwards = Color.cyan;
         }
 
@@ -83,7 +120,9 @@ public class HandleInteractables : MonoBehaviour
         if (inwardsRaycast)
         {
             colorInwards = Color.green;
-        } else {
+        }
+        else
+        {
             colorInwards = Color.cyan;
         }
 

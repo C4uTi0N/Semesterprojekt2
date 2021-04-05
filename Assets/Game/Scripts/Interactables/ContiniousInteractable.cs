@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Interactable
+public interface ContiniousInteractable
 {
     public string getInteractableText();
-    void onInteraction();
+    void onInteractionStart();
+
+    void onInteractionEnd();
+
+
 }
