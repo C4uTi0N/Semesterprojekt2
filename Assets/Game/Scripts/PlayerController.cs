@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 10f;                                       // Movement speed
     public float vaultSpeed = 5f;                                           // Vaulting speed
     public float maxSpeed = 20;                                             // Max movement speed
+    public bool cameraPanOut = false;
 
     //Debug bools
     [Header("Debug bools", order = 2)]
@@ -163,8 +164,18 @@ public class PlayerController : MonoBehaviour
 
     private void CameraFollower()
     {
-        playerCamera.transform.position = player.position + new Vector3(0, 0, -10);     // Makes the Camera follow the player
-    }
+        if (cameraPanOut)
+        {
+            if ((playerCamera.transform.position.z + 10) > player.position.x)
+            {
+                playerCamera.transform.position = player.position + new Vector3(0, 0, -10 + player.position.x);
+
+            }
+        }
+
+        playerCamera.transform.position = player.position + new Vector3(0, 0, -10);
+    }   
+
     private void Gravity()
     {
         // if the player is not vaulting, apply gravity/downforce
