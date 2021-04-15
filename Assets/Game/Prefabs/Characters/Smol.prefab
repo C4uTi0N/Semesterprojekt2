@@ -127,4 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 1
+  speed: 3
+  minDistance: 2
+  shouldFollow: 0
