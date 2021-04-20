@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovementInput();
-        Gravity();
+        //Gravity();
         Vault();
     }
 
@@ -146,8 +146,8 @@ public class PlayerController : MonoBehaviour
     private void CheckGrounded()
     {
         // Size of collision box
-        Vector2 boxSize = new Vector2(0.5f, 0.1f);
-        isGrounded = Physics.BoxCast(player.position, boxSize, Vector2.down, Quaternion.identity, 1);
+        Vector2 boxSize = new Vector2(0.4375f, 0.1f);
+        isGrounded = Physics.BoxCast(player.position, boxSize, Vector2.down, Quaternion.identity, 1.15f);
 
         Color color = Color.yellow;
         if (isGrounded)
@@ -157,9 +157,9 @@ public class PlayerController : MonoBehaviour
             color = Color.yellow;
         }
 
-        Debug.DrawRay(player.position + new Vector3(boxSize.x, -1 -boxSize.y), Vector2.up, color);                 // Front
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -1 -boxSize.y), Vector2.up, color);                // Rear
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -1 -boxSize.y), Vector2.right * (boxSize * 2), color);      // Center
+        Debug.DrawRay(player.position + new Vector3(boxSize.x, -1.15f -boxSize.y), Vector2.up, color);                 // Front
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -1.15f -boxSize.y), Vector2.up, color);                // Rear
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -1.15f -boxSize.y), Vector2.right * (boxSize * 2), color);      // Center
         
     }
 
