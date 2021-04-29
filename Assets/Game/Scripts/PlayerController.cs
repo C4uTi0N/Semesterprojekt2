@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;                                                   // Set Rigidbody component to "rb"
     private Transform player;                                               // Set Transform component to "player"
     private Camera playerCamera;                                            // Set Camera component to "playerCamera"
+    private CapsuleCollider capsCollider;
 
     // Movement input Axis & Direction
     private float xAxisMovement;                                            // Movement on the "X" axis
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public bool canVault;                                                   // Bool to check if player can vault
     public bool isVaulting;                                                 // Bool to check if player is vaulting
     public bool isInteracting;                                              // Bool to check if player is interacting
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();                                     // Set "rb" to Rigidbody of attached Gameobject
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         rb.useGravity = false;                                              // Disable Gravity from Rigidbody
 
         player = GetComponent<Transform>();                                 // Set "player" to Transform of attached gameobject
+        capsCollider = GetComponent<CapsuleCollider>();
 
         playerCamera = FindObjectOfType<Camera>();                          // Find the only camera in the scene and set it "camera"
 
@@ -52,7 +55,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovementInput();
-        //Gravity();
+        Gravity();
         Vault();
     }
 
@@ -103,7 +106,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator VaultTimer()    // Timer for when to disable vaulting (set "isVaulting" to false)
     {
         rb.velocity = player.right * vaultSpeed;
-        yield return new WaitForSeconds((1 / vaultSpeed) / 5);  // Wait "x" seconds before disabling vaulting (set "isVaulting" to false), time is proportinal with vault speed
+        yield return new WaitForSeconds(0.125f);
         isVaulting = false;
     }
 
@@ -111,22 +114,16 @@ public class PlayerController : MonoBehaviour
     private void CheckVault()
     {
         // Size of collision box
-        Vector2 boxSize = new Vector2(0.1f, 1f);
+        Vector2 boxSize = new Vector2(capsCollider.radius, capsCollider.height / 2);
 
         // Raycast for "canVault" bool (true if either raycast hits other object)
-        bool vaultCheck = Physics.BoxCast(player.position + player.TransformDirection(Vector2.right * 0.39f), boxSize, player.TransformDirection(Vector2.right), Quaternion.identity, 0.1f);
+        bool vaultCheck = Physics.BoxCast(player.position, boxSize, player.TransformDirection(Vector2.right), Quaternion.identity, boxSize.x / 2);
         
         if (vaultCheck && !isInteracting)
         {
             canVault = true;
         } else {
             canVault = false;
-        }
-
-        // If canVault is true and the player presses space, set "isVaulting" to true
-        if (Input.GetKeyDown(KeyCode.Space) && canVault)
-        {
-            isVaulting = true;
         }
 
         Color color = Color.yellow;
@@ -137,17 +134,24 @@ public class PlayerController : MonoBehaviour
             color = Color.yellow;
         }
 
-        Debug.DrawRay(player.position + player.TransformDirection(0.5f, boxSize.y, 0), player.TransformDirection(Vector2.right) * (boxSize.x - 0.01f), color);        // Top
-        Debug.DrawRay(player.position + player.TransformDirection(0.5f, -boxSize.y, 0), player.TransformDirection(Vector2.right) * (boxSize.x - 0.01f), color);       // Buttom
-        Debug.DrawRay(player.position + player.TransformDirection(0.49f + boxSize.x, -boxSize.y, 0), Vector2.up * (boxSize.y * 2), color);                   // Center
+        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x / 2, boxSize.y, 0), player.right * boxSize.x, color);           // Top
+        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x / 2, -boxSize.y, 0), player.right * boxSize.x, color);          // Buttom
+        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x * 1.5f, boxSize.y, 0), Vector2.down * boxSize.y * 2, color);    // Front
+        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x / 2, boxSize.y, 0), Vector2.down * boxSize.y * 2, color);       // Rear
+        
+        // If canVault is true and the player presses space, set "isVaulting" to true
+        if (Input.GetKey(KeyCode.Space) && canVault)
+        {
+            isVaulting = true;
+        }
     }
 
 
     private void CheckGrounded()
     {
         // Size of collision box
-        Vector2 boxSize = new Vector2(0.4375f, 0.1f);
-        isGrounded = Physics.BoxCast(player.position, boxSize, Vector2.down, Quaternion.identity, 1.15f);
+        Vector2 boxSize = new Vector2(capsCollider.radius, capsCollider.height / 20);
+        isGrounded = Physics.BoxCast(player.position, boxSize, Vector2.down, Quaternion.identity, 1.25f);
 
         Color color = Color.yellow;
         if (isGrounded)
@@ -157,9 +161,10 @@ public class PlayerController : MonoBehaviour
             color = Color.yellow;
         }
 
-        Debug.DrawRay(player.position + new Vector3(boxSize.x, -1.15f -boxSize.y), Vector2.up, color);                 // Front
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -1.15f -boxSize.y), Vector2.up, color);                // Rear
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -1.15f -boxSize.y), Vector2.right * (boxSize * 2), color);      // Center
+        Debug.DrawRay(player.position + new Vector3(boxSize.x, -(capsCollider.height / 2)), new Vector2(0, -boxSize.y), color);                     // Front
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -(capsCollider.height / 2)), new Vector2(0, -boxSize.y), color);                    // Rear
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -(capsCollider.height / 2)), Vector2.right * (boxSize.x * 2), color);               // Top
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -(capsCollider.height / 2) -boxSize.y), Vector2.right * (boxSize.x * 2), color);    // Center
         
     }
 

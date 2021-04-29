@@ -255,7 +255,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355491070}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.46, y: 0.58, z: 0.6}
@@ -569,21 +569,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8699770207810586609, guid: f7294862ee936eb4da958990e1e14bd8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7294862ee936eb4da958990e1e14bd8, type: 3}
---- !u!114 &1157658954 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1346098342807831637, guid: f7294862ee936eb4da958990e1e14bd8, type: 3}
-  m_PrefabInstance: {fileID: 1157658953}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04317fce65da54f4997a5c4465b4e93c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1900903020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 92453896479810155, guid: 391c6d22144296e4aafa5f0fd857a25a, type: 3}
@@ -596,10 +585,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4487152041246010640, guid: 03ab5f1b69dd2524bad4af8373529ea6, type: 3}
-      propertyPath: continueDialogue.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1157658954}
     - target: {fileID: 4487152041246010645, guid: 03ab5f1b69dd2524bad4af8373529ea6, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -647,18 +632,6 @@ PrefabInstance:
     - target: {fileID: 4487152041246010649, guid: 03ab5f1b69dd2524bad4af8373529ea6, type: 3}
       propertyPath: m_Name
       value: Player Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542298608444410948, guid: 03ab5f1b69dd2524bad4af8373529ea6, type: 3}
-      propertyPath: m_Radius
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542298608444410948, guid: 03ab5f1b69dd2524bad4af8373529ea6, type: 3}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6542298608444410948, guid: 03ab5f1b69dd2524bad4af8373529ea6, type: 3}
-      propertyPath: m_Center.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03ab5f1b69dd2524bad4af8373529ea6, type: 3}
@@ -747,6 +720,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6923994522015964970, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6923994522076179200, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -794,6 +771,22 @@ PrefabInstance:
     - target: {fileID: 6923994522076179203, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
       propertyPath: m_Name
       value: Home
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923994523055317187, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9421884
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923994523055317187, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6971799
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923994523055317187, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923994523055317187, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
+      propertyPath: m_Center.y
+      value: -0.08141007
       objectReference: {fileID: 0}
     - target: {fileID: 6923994523167982146, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
