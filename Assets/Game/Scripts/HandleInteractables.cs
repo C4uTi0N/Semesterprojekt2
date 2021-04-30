@@ -53,8 +53,8 @@ public class HandleInteractables : MonoBehaviour
         Vector3 playerForward = player.TransformDirection(Vector3.right);
         Vector3 playerInwards = Vector3.forward;
 
-        bool forwardRaycast = Physics.Raycast(player.position, playerForward, out hitInfoForward, 1.1f);
-        bool inwardsRaycast = Physics.Raycast(player.position, playerInwards, out hitInfoInwards, 1.3f);
+        bool forwardRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerForward, out hitInfoForward, 1.1f);
+        bool inwardsRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards, out hitInfoInwards, 1.3f);
 
         if (forwardRaycast)
         {
@@ -126,7 +126,7 @@ public class HandleInteractables : MonoBehaviour
             colorInwards = Color.cyan;
         }
 
-        Debug.DrawRay(player.position, playerForward * 1.1f, colorForwards);
-        Debug.DrawRay(player.position, playerInwards * 1.3f, colorInwards);
+        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerForward * 1.1f, colorForwards);
+        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards * 1.3f, colorInwards);
     }
 }

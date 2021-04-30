@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;                                                   // Set Rigidbody component to "rb"
     private Transform player;                                               // Set Transform component to "player"
     private Camera playerCamera;                                            // Set Camera component to "playerCamera"
-    private CapsuleCollider capsCollider;
+    public CapsuleCollider capsCollider;                                    // Set the Capsule Collider of the player
 
     // Movement input Axis & Direction
     private float xAxisMovement;                                            // Movement on the "X" axis
@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovementInput();
-        Gravity();
         Vault();
+        Gravity();
     }
 
 
@@ -114,10 +114,10 @@ public class PlayerController : MonoBehaviour
     private void CheckVault()
     {
         // Size of collision box
-        Vector2 boxSize = new Vector2(capsCollider.radius, capsCollider.height / 2);
+        Vector2 boxSize = new Vector2(capsCollider.radius / 2, capsCollider.height / 2);
 
         // Raycast for "canVault" bool (true if either raycast hits other object)
-        bool vaultCheck = Physics.BoxCast(player.position, boxSize, player.TransformDirection(Vector2.right), Quaternion.identity, boxSize.x / 2);
+        bool vaultCheck = Physics.BoxCast(player.position + new Vector3(0, boxSize.y, 0), boxSize, player.TransformDirection(Vector2.right), Quaternion.identity, boxSize.x * 1.5f);
         
         if (vaultCheck && !isInteracting)
         {
@@ -134,10 +134,10 @@ public class PlayerController : MonoBehaviour
             color = Color.yellow;
         }
 
-        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x / 2, boxSize.y, 0), player.right * boxSize.x, color);           // Top
-        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x / 2, -boxSize.y, 0), player.right * boxSize.x, color);          // Buttom
-        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x * 1.5f, boxSize.y, 0), Vector2.down * boxSize.y * 2, color);    // Front
-        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x / 2, boxSize.y, 0), Vector2.down * boxSize.y * 2, color);       // Rear
+        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x * 2.5f, boxSize.y * 2, 0), Vector2.down * boxSize.y * 2, color);    // Front
+        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x, boxSize.y * 2, 0), Vector2.down * boxSize.y * 2, color);           // Rear
+        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x, boxSize.y * 2, 0), player.right * boxSize.x * 1.5f, color);            // Top
+        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x, 0, 0), player.right * boxSize.x * 1.5f, color);                       // Buttom
         
         // If canVault is true and the player presses space, set "isVaulting" to true
         if (Input.GetKey(KeyCode.Space) && canVault)
@@ -150,8 +150,8 @@ public class PlayerController : MonoBehaviour
     private void CheckGrounded()
     {
         // Size of collision box
-        Vector2 boxSize = new Vector2(capsCollider.radius, capsCollider.height / 20);
-        isGrounded = Physics.BoxCast(player.position, boxSize, Vector2.down, Quaternion.identity, 1.25f);
+        Vector2 boxSize = new Vector2(capsCollider.radius, capsCollider.height / 10);
+        isGrounded = Physics.BoxCast(player.position + new Vector3(0, boxSize.y * 2 , 0), boxSize, Vector2.down, Quaternion.identity, boxSize.y + (boxSize.y / 2));
 
         Color color = Color.yellow;
         if (isGrounded)
@@ -161,10 +161,10 @@ public class PlayerController : MonoBehaviour
             color = Color.yellow;
         }
 
-        Debug.DrawRay(player.position + new Vector3(boxSize.x, -(capsCollider.height / 2)), new Vector2(0, -boxSize.y), color);                     // Front
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -(capsCollider.height / 2)), new Vector2(0, -boxSize.y), color);                    // Rear
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -(capsCollider.height / 2)), Vector2.right * (boxSize.x * 2), color);               // Top
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -(capsCollider.height / 2) -boxSize.y), Vector2.right * (boxSize.x * 2), color);    // Center
+        Debug.DrawRay(player.position + new Vector3(boxSize.x, boxSize.y / 2), new Vector2(0, -boxSize.y), color);              // Front
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, boxSize.y / 2), new Vector2(0, -boxSize.y), color);             // Rear
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, boxSize.y / 2), Vector2.right * (boxSize.x * 2), color);        // Top
+        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -boxSize.y / 2), Vector2.right * (boxSize.x * 2), color);       // Buttom
         
     }
 
