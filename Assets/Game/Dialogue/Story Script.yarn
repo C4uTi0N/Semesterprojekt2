@@ -1,0 +1,70 @@
+﻿title: start
+tags:
+---
+Smol: *Stomach rumbles*
+Big: Hungry?
+Smol: I'm starving. Is there any food left.
+Big: Let me check.
+
+===
+title: grabFood
+tags:
+---
+Big: Hmph, it's empty...
+Big: Looks like we'll have to go out and find some.
+Smol: Aww.. Where to?
+Big: There is a hospital with a cantina close body.
+Big: Lets check there.
+
+<<set $smolFollow to true>>
+
+===
+title: street
+tags:
+---
+Smol: Does it hurt?
+Big: Huh?
+Smol: Your arm, does it hurt?
+Big: It's fine. Dont worry.
+
+===
+title: playground
+tags:
+---
+Smol: A swing!! // *Runs happily torwards the swing*
+Smol: Come on!! Push me!!
+
+-> Push her on the swing for a while
+-> Keep going
+    Big: Sorry, we gotta go.
+    Big: Weren't you hungry?
+===
+title: swing
+tags:
+---
+Smol: Weeee!
+// Wait a little while
+Big: Alright, that's enough.
+Big: We have to get going.
+Smol: Hmph, okay.
+Smol: Can we come back later?
+
+===
+title: keepGoing
+tags: 
+---
+Smol: Aww, you're so boring...
+Big: We can come back later.
+Smol: yay!
+Smol: You're still boring though.
+Big: Sure
+Big: We can take a shortcut through this house.
+Big: The hospital is just on the other side.
+
+===
+title: house
+tags: 
+---
+
+
+===

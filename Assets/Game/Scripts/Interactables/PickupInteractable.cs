@@ -12,6 +12,7 @@ public class PickupInteractable : MonoBehaviour, Interactable
     }
     public void onInteraction()
     {
+        onInteract.Invoke();
         inventory.addToInventory(name);
         Destroy(gameObject);
     }

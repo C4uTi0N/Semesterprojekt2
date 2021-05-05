@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 [RequireComponent(typeof(Rigidbody))]
 public class SmolController : MonoBehaviour
 {
     private Rigidbody rb;
-
     public Transform target;
+    public YarnProgram storyScript;
 
     public float speed = 3;
 

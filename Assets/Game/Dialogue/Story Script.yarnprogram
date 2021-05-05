@@ -1,0 +1,4 @@
+﻿title: Program
+---
+<<declare $smolFollow = false "If true, Smol should follow Big.">>
+===

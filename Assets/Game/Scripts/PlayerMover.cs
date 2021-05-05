@@ -8,11 +8,11 @@ public class PlayerMover : MonoBehaviour
     public Transform player;
     public Transform smol;
 
-    public void MoveThroughDoor(Transform setLocation)
+    public void MoveThroughDoor(Transform spawnLocation)
     {
-        Vector3 setLocationOffest = new Vector3(setLocation.position.x - 1.5f, setLocation.position.y - 0.4f, setLocation.position.z - 1);
+        Vector3 spawnLocationOffest = new Vector2(spawnLocation.position.x - 1, spawnLocation.position.y);
 
-        player.position = setLocation.position;
-        smol.position = setLocationOffest;
+        player.position = spawnLocation.position;
+        smol.position = spawnLocationOffest;
     }
 }
