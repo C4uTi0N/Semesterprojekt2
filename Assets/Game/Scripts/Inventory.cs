@@ -20,4 +20,9 @@ public class Inventory : MonoBehaviour
     public void addToInventory(string item) {
         inventory.Add(item);
     }
+
+    public bool hasItem(string name)
+    {
+        return inventory.Contains(name);
+    }
 }

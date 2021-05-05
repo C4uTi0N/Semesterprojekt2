@@ -56,6 +56,9 @@ public class HandleInteractables : MonoBehaviour
         bool forwardRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerForward, out hitInfoForward, 1.1f);
         bool inwardsRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards, out hitInfoInwards, 1.3f);
 
+        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerForward, Color.red, 1.1f);
+        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards, Color.red, 1.3f);
+
         if (forwardRaycast)
         {
 

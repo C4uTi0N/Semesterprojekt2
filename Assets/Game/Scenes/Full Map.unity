@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 355491073}
   - component: {fileID: 355491072}
   - component: {fileID: 355491071}
+  - component: {fileID: 355491074}
   m_Layer: 0
   m_Name: cereal box
   m_TagString: Untagged
@@ -306,8 +307,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.47, y: 0.595, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.47, y: 2.0688982, z: 1}
+  m_Center: {x: 0, y: -0.73694897, z: 0}
 --- !u!212 &355491073
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -359,6 +360,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &355491074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355491070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64c05ca626514840a4e4571d7d732d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &355491075
 Transform:
   m_ObjectHideFlags: 0
@@ -836,6 +849,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 487426114}
     m_Modifications:
+    - target: {fileID: 5977807633147001825, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0950887
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977807633147001825, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
+      propertyPath: m_Center.y
+      value: 0.2781
+      objectReference: {fileID: 0}
     - target: {fileID: 6923994522076179200, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -923,6 +944,10 @@ PrefabInstance:
     - target: {fileID: 6923994523167982146, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088516260171575187, guid: 16082712a06ddaa4992581421d1e0668, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16082712a06ddaa4992581421d1e0668, type: 3}

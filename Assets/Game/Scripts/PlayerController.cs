@@ -117,7 +117,16 @@ public class PlayerController : MonoBehaviour
         Vector2 boxSize = new Vector2(capsCollider.radius / 2, capsCollider.height / 2);
 
         // Raycast for "canVault" bool (true if either raycast hits other object)
-        bool vaultCheck = Physics.BoxCast(player.position + new Vector3(0, boxSize.y, 0), boxSize, player.TransformDirection(Vector2.right), Quaternion.identity, boxSize.x * 1.5f);
+        RaycastHit hitInfo;
+        bool vaultCheck = Physics.BoxCast(player.position + new Vector3(0, boxSize.y, 0), boxSize, player.TransformDirection(Vector2.right), out hitInfo, Quaternion.identity, boxSize.x * 1.5f);
+
+        if(vaultCheck)
+        {
+            if(hitInfo.collider.GetComponent<NotVaultable>() != null)
+            {
+                vaultCheck = false;
+            }
+        }
         
         if (vaultCheck && !isInteracting)
         {
