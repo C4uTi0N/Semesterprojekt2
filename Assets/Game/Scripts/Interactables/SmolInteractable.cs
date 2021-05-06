@@ -28,16 +28,10 @@ public class SmolInteractable : MonoBehaviour, Interactable
 
     public void onInteraction()
     {
-
-        
-
         if (player.GetComponent<Inventory>().hasItem("cereal box")) 
         {
-            yarnMemmory.SetValue("$foodShown", true);
-            //GameObject Smol = this.gameObject;
-            //Smol.GetComponent<SmolController>().ShouldFollow(true);           
+            yarnMemmory.SetValue("$foodShown", true);          
         }
-        //Todo: dialog system. else { }
 
 
     }
