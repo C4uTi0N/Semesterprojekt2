@@ -131,7 +131,7 @@ CapsuleCollider:
   m_Radius: 0.45
   m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!54 &4487152041246010646
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -160,8 +160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2edf83b1dbb162641802c1acf03cdc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  capsCollider: {fileID: 0}
   gravityMultiplier: 5
-  movementSpeed: 10
+  movementSpeed: 8
   vaultSpeed: 5
   maxSpeed: 20
   cameraPanOut: 0

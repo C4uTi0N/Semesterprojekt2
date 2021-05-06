@@ -16,12 +16,15 @@ public class PlayerController : MonoBehaviour
     // Player Settings
     private float gravity = 9.82f;                                          // Gravity value
 
+    private float playerPositionOffset;                                     // Offset fo player position for camera
+    private float cameraOffsetY;                                            // Offset for camera on Y axis
+
     [Header("Player settings", order = 1)]
     public float gravityMultiplier = 5;                                     // Gravity Multiplier
     public float movementSpeed = 10f;                                       // Movement speed
     public float vaultSpeed = 5f;                                           // Vaulting speed
     public float maxSpeed = 20;                                             // Max movement speed
-    public bool cameraPanOut = false;
+    public bool cameraPanOut = false;                                       // If true, camera will pan out when moving
 
     //Debug bools
     [Header("Debug bools", order = 2)]
@@ -122,8 +125,10 @@ public class PlayerController : MonoBehaviour
 
         if(vaultCheck)
         {
-            if(hitInfo.collider.GetComponent<NotVaultable>() != null)
+            if(hitInfo.collider.GetComponent<Vaultable>() != null)
             {
+                vaultCheck = true;
+            } else {
                 vaultCheck = false;
             }
         }
@@ -177,18 +182,40 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public bool CameraPanOut
+    {
+        get { return cameraPanOut; }
+        set {
+            if (value == cameraPanOut)
+            {
+                return;
+            }
+            cameraPanOut = value;
+            if (cameraPanOut)
+                playerPositionOffset = player.position.x;
+        }
+    }
+
     private void CameraFollower()
     {
+        float originCameraOrthSize = 3.6f;      // Original size of Player Camera in orthographic view
+        
+        if (cameraPanOut && playerCamera.orthographicSize < 7)      // Pan out
+        {
+            cameraOffsetY = player.position.x / 10;
+            playerCamera.orthographicSize = originCameraOrthSize + (player.position.x - playerPositionOffset) / 3;
+            playerCamera.transform.position = player.position + new Vector3(0, cameraOffsetY, -2);
+        } 
+        
         if (cameraPanOut)
         {
-            if ((playerCamera.transform.position.z + 10) > player.position.x)
-            {
-                playerCamera.transform.position = player.position + new Vector3(0, 0, -10 + player.position.x);
-
-            }
+            playerCamera.transform.position = player.position + new Vector3(0, cameraOffsetY, -2);
         }
 
-        playerCamera.transform.position = player.position + new Vector3(0, 0, -10);
+        if (!cameraPanOut)
+        {
+            playerCamera.transform.position = player.position + new Vector3(0, 2, -2);
+        }
     }   
 
     private void Gravity()

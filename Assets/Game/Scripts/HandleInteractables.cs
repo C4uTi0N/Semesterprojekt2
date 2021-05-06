@@ -7,16 +7,16 @@ using UnityEngine.UI;
 public class HandleInteractables : MonoBehaviour
 {
     private Transform player;
-    private GameObject textObj;
     private Text interactable;
+    private GameObject interactTextObj;
     private PlayerController playerController;
     public UnityEngine.Events.UnityEvent continueDialogue;
 
     private void Awake()
     {
         player = GetComponent<Transform>();
-        textObj = GameObject.Find("Press [E] to interact");
-        interactable = textObj.GetComponent<Text>();
+        interactTextObj = GameObject.Find("Interact");
+        interactable = GameObject.Find("Press [E] to interact").GetComponent<Text>();
         playerController = GetComponent<PlayerController>();
     }
 
@@ -34,11 +34,10 @@ public class HandleInteractables : MonoBehaviour
     {
         interactable.text = hit.getInteractableText();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
             hit.onInteractionStart();
-        }
-        if (Input.GetKeyUp(KeyCode.E))
+        } else
         {
             hit.onInteractionEnd();
         }
@@ -53,15 +52,12 @@ public class HandleInteractables : MonoBehaviour
         Vector3 playerForward = player.TransformDirection(Vector3.right);
         Vector3 playerInwards = Vector3.forward;
 
-        bool forwardRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerForward, out hitInfoForward, 1.1f);
+        bool forwardRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 3, 0), playerForward, out hitInfoForward, 1.1f);
         bool inwardsRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards, out hitInfoInwards, 1.3f);
-
-        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerForward, Color.red, 1.1f);
-        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards, Color.red, 1.3f);
 
         if (forwardRaycast)
         {
-
+            interactTextObj.SetActive(true);
             var forwardInteractable = hitInfoForward.collider.GetComponent<Interactable>();
             if (forwardInteractable != null)
             {
@@ -82,6 +78,7 @@ public class HandleInteractables : MonoBehaviour
         {
             if (inwardsRaycast)
             {
+                interactTextObj.SetActive(true);
                 var hitItemInwards = hitInfoInwards.collider.GetComponent<Interactable>();
                 if (hitItemInwards != null)
                 {
@@ -94,6 +91,7 @@ public class HandleInteractables : MonoBehaviour
             }
             else
             {
+                interactTextObj.SetActive(false);
                 if (interactable.text != "")
                 {
                     interactable.text = "";
@@ -109,27 +107,27 @@ public class HandleInteractables : MonoBehaviour
             continueDialogue.Invoke();
         }
 
-        Color colorForwards = Color.cyan;
+        Color colorForwards = Color.yellow;
         if (forwardRaycast)
         {
             colorForwards = Color.green;
         }
         else
         {
-            colorForwards = Color.cyan;
+            colorForwards = Color.yellow;
         }
 
-        Color colorInwards = Color.cyan;
+        Color colorInwards = Color.yellow;
         if (inwardsRaycast)
         {
             colorInwards = Color.green;
         }
         else
         {
-            colorInwards = Color.cyan;
+            colorInwards = Color.yellow;
         }
 
-        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerForward * 1.1f, colorForwards);
+        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 3, 0), playerForward * 1.1f, colorForwards);
         Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards * 1.3f, colorInwards);
     }
 }
