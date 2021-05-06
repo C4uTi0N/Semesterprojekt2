@@ -1,23 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class SmolInteractable : MonoBehaviour, Interactable
 {
+    private InMemoryVariableStorage yarnMemmory;
+    private GameObject player;
+
+    void Awake()
+    {
+        player = GameObject.Find("Player Character");
+        yarnMemmory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
+    }
+
     public string getInteractableText()
     {
-        return "Press E to make Smol follow";
+        if (player.GetComponent<Inventory>().hasItem("cereal box"))
+        {
+            if (!yarnMemmory.TryGetValue<bool>("$foodShown", out bool output))
+            {
+                return "Press E to show Smol the box";
+            }
+        }
+        return "";
     }
 
     public void onInteraction()
     {
 
-        GameObject player = GameObject.Find("Player Character");
+        
 
         if (player.GetComponent<Inventory>().hasItem("cereal box")) 
         {
-            GameObject Smol = this.gameObject;
-            Smol.GetComponent<SmolController>().ShouldFollow(true);
+            yarnMemmory.SetValue("$foodShown", true);
+            //GameObject Smol = this.gameObject;
+            //Smol.GetComponent<SmolController>().ShouldFollow(true);           
         }
         //Todo: dialog system. else { }
 

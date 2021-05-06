@@ -10,13 +10,21 @@ Big: Let me check.
 title: grabFood
 tags:
 ---
-Big: Hmph, it's empty...
-Big: Looks like we'll have to go out and find some.
-Smol: Aww.. Where to?
-Big: There is a hospital with a cantina close body.
-Big: Lets check there.
+Big: (Hmph, it's empty...)
+Big: Sorry, we're out of food... *show the box to Smol*
 
-<<set $smolFollow to true>>
+<<if $foodShown is true>>
+    Big: Looks like we'll have to go out and find some.
+    Smol: Aww.. Where to?
+    Big: There is a hospital with a cantina close body.
+    Big: Lets check there.
+    Smol: Hmph, okay.
+    <<set $smolFollow to true>>
+<<endif>>
+
+<<if $foodShown is false>>
+    <<jump grabFood>>
+<<endif>>
 
 ===
 title: street
@@ -35,9 +43,12 @@ Smol: A swing!! // *Runs happily torwards the swing*
 Smol: Come on!! Push me!!
 
 -> Push her on the swing for a while
+    <<jump swing>>
+    
 -> Keep going
-    Big: Sorry, we gotta go.
+    Big: No, we gotta go.
     Big: Weren't you hungry?
+    <<jump keepGoing>>
 ===
 title: swing
 tags:

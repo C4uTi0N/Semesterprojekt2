@@ -1,4 +1,5 @@
 ﻿title: Program
 ---
-<<declare $smolFollow = false "If true, Smol should follow Big.">>
+<<declare $foodShown = false "Is true when food has been shwon to Smol">>
+<<declare $smolFollow = false "If ture, Smol should follow Big">>
 ===

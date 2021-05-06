@@ -40,7 +40,6 @@ Bigg: Let's try the kitchen
 title: Kitchen
 tags:
 ---
-body:
 <<set $kitchen to true>>
 <<if $fridge is false && $cupboard is false && $freezer is false>>
 	Smol: It's even worse in here!

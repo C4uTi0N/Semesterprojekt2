@@ -12,10 +12,17 @@ ScriptedImporter:
   - {fileID: 6391573757903218779, guid: 82f9b4996ee6223419c8e87a30026a54, type: 3}
   compileError: 
   serializedDeclarations:
+  - name: $foodShown
+    type: 3
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: Is true when food has been shwon to Smol
+    sourceYarnAsset: {instanceID: 0}
   - name: $smolFollow
     type: 3
     defaultValueBool: 0
     defaultValueNumber: 0
     defaultValueString: 
-    description: If true, Smol should follow Big.
+    description: If ture, Smol should follow Big
     sourceYarnAsset: {instanceID: 0}

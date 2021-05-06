@@ -9,10 +9,43 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
   baseLanguageID: en-US
-  stringIDs: []
-  AnyImplicitStringIDs: 0
+  stringIDs:
+  - line:Story Script-start-0
+  - line:Story Script-start-1
+  - line:Story Script-start-2
+  - line:Story Script-start-3
+  - line:Story Script-grabFood-4
+  - line:Story Script-grabFood-5
+  - line:Story Script-grabFood-6
+  - line:Story Script-grabFood-7
+  - line:Story Script-grabFood-8
+  - line:Story Script-grabFood-9
+  - line:Story Script-grabFood-10
+  - line:Story Script-street-11
+  - line:Story Script-street-12
+  - line:Story Script-street-13
+  - line:Story Script-street-14
+  - line:Story Script-playground-15
+  - line:Story Script-playground-16
+  - line:Story Script-playground-17
+  - line:Story Script-playground-18
+  - line:Story Script-playground-19
+  - line:Story Script-playground-20
+  - line:Story Script-swing-21
+  - line:Story Script-swing-22
+  - line:Story Script-swing-23
+  - line:Story Script-swing-24
+  - line:Story Script-swing-25
+  - line:Story Script-keepGoing-26
+  - line:Story Script-keepGoing-27
+  - line:Story Script-keepGoing-28
+  - line:Story Script-keepGoing-29
+  - line:Story Script-keepGoing-30
+  - line:Story Script-keepGoing-31
+  - line:Story Script-keepGoing-32
+  AnyImplicitStringIDs: 1
   isSuccesfullyParsed: 1
   parseErrorMessage: 
-  baseLanguage: {instanceID: 0}
+  baseLanguage: {fileID: 7128917941130120860, guid: 82f9b4996ee6223419c8e87a30026a54, type: 3}
   localizations: []
   localizationDatabase: {instanceID: 0}
