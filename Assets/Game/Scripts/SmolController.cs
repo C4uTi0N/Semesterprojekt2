@@ -10,13 +10,13 @@ public class SmolController : MonoBehaviour
     private Rigidbody rb;
     public Transform target;
     
+    private float distance;
 
     public float speed = 3;
-
     public float minDistance = 2;
-    private float distance;
-    
+
     public bool shouldFollow = false;
+
 
     private void Awake() 
     {
@@ -29,6 +29,15 @@ public class SmolController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (rb.position.x < target.position.x)
+        {
+            rb.rotation = Quaternion.Euler(0, 0, 0);     // Set player rotation on Y axis to 90 deg
+        }
+        if (rb.position.x > target.position.x)
+        {
+            rb.rotation = Quaternion.Euler(0, 180, 0);    // Set player rotation on Y axis to -90 deg
+        }
+
         if (yarnMemory.TryGetValue<bool>("$smolFollow", out var output))
         {
             shouldFollow = output;
@@ -44,10 +53,5 @@ public class SmolController : MonoBehaviour
             }
         }
     }
-    /*
-    public void ShouldFollow(bool value)
-    {
-        shouldFollow = value;
-    }*/
 }
 

@@ -47,11 +47,14 @@ public class HandleInteractables : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RaycastHit hitInfoForwardInner;
         RaycastHit hitInfoForward;
         RaycastHit hitInfoInwards;
+        Vector3 playerForwardInner = player.TransformDirection(Vector3.right);
         Vector3 playerForward = player.TransformDirection(Vector3.right);
         Vector3 playerInwards = Vector3.forward;
 
+        bool forwardInnerRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 3, 1), playerForwardInner, out hitInfoForwardInner, 1.1f);
         bool forwardRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 3, 0), playerForward, out hitInfoForward, 1.1f);
         bool inwardsRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards, out hitInfoInwards, 1.3f);
 
@@ -69,10 +72,7 @@ public class HandleInteractables : MonoBehaviour
             if (forwardContinousInteractable != null)
             {
                 handleInteraction(forwardContinousInteractable);
-                
-                
             }
-
         }
         else
         {
@@ -96,7 +96,47 @@ public class HandleInteractables : MonoBehaviour
                 {
                     interactable.text = "";
                 }
+            }
+        }
 
+        if (forwardInnerRaycast)
+        {
+            interactTextObj.SetActive(true);
+            var forwardInteractable = hitInfoForwardInner.collider.GetComponent<Interactable>();
+            if (forwardInteractable != null)
+            {
+                handleInteraction(forwardInteractable);
+            }
+
+            var forwardContinousInteractable = hitInfoForwardInner.collider.GetComponent<ContiniousInteractable>();
+
+            if (forwardContinousInteractable != null)
+            {
+                handleInteraction(forwardContinousInteractable);
+            }
+        }
+        else
+        {
+            if (inwardsRaycast)
+            {
+                interactTextObj.SetActive(true);
+                var hitItemInwards = hitInfoInwards.collider.GetComponent<Interactable>();
+                if (hitItemInwards != null)
+                {
+                    interactable.text = hitItemInwards.getInteractableText();
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        hitItemInwards.onInteraction();
+                    }
+                }
+            }
+            else
+            {
+                interactTextObj.SetActive(false);
+                if (interactable.text != "")
+                {
+                    interactable.text = "";
+                }
             }
         }
 
@@ -128,6 +168,7 @@ public class HandleInteractables : MonoBehaviour
         }
 
         Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 3, 0), playerForward * 1.1f, colorForwards);
+        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 3, 1), playerForward * 1.1f, colorForwards);
         Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards * 1.3f, colorInwards);
     }
 }

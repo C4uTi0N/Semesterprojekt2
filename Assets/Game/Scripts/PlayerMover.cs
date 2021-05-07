@@ -10,7 +10,7 @@ public class PlayerMover : MonoBehaviour
 
     public void MoveThroughDoor(Transform spawnLocation)
     {
-        Vector3 spawnLocationOffest = new Vector2(spawnLocation.position.x - 1, spawnLocation.position.y);
+        Vector3 spawnLocationOffest = new Vector3(spawnLocation.position.x - 0.5f, spawnLocation.position.y, 1.5f);
 
         player.position = spawnLocation.position;
         smol.position = spawnLocationOffest;
