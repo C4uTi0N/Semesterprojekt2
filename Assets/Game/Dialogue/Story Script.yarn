@@ -5,13 +5,14 @@ Smol: *Stomach rumbles*
 Big: Hungry?
 Smol: I'm starving. Is there any food left.
 Big: Let me check.
+* Grab tho cerael box on the shelf *
 
 ===
 title: grabFood
 tags:
 ---
 Big: (Hmph, it's empty...)
-Big: Sorry, we're out of food... *show the box to Smol*
+Big: Sorry, we're out of food... * show the box to Smol *
 
 <<if $foodShown is true>>
     Big: Looks like we'll have to go out and find some.

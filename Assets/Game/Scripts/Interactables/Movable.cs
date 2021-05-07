@@ -11,7 +11,7 @@ public class Movable : MonoBehaviour, ContiniousInteractable
 
     public string getInteractableText()
     {
-        return "press [E] to push or pull";
+        return "Hold [E] to push or pull";
     }
 
     void Awake()
