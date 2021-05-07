@@ -5,12 +5,14 @@ using Yarn.Unity;
 
 public class SmolInteractable : MonoBehaviour, Interactable
 {
-    private InMemoryVariableStorage yarnMemmory;
     private GameObject player;
+    private DialogueUI dialogueUI;
+    private InMemoryVariableStorage yarnMemmory;
 
     void Awake()
     {
         player = GameObject.Find("Player Character");
+        dialogueUI = GameObject.Find("Dialogue Runner").GetComponent<DialogueUI>();
         yarnMemmory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
     }
 
@@ -30,7 +32,8 @@ public class SmolInteractable : MonoBehaviour, Interactable
     {
         if (player.GetComponent<Inventory>().hasItem("cereal box")) 
         {
-            yarnMemmory.SetValue("$foodShown", true);          
+            yarnMemmory.SetValue("$foodShown", true);
+            dialogueUI.MarkLineComplete();
         }
 
 
