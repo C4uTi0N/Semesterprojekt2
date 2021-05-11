@@ -26,3 +26,10 @@ ScriptedImporter:
     defaultValueString: 
     description: If ture, Smol should follow Big
     sourceYarnAsset: {instanceID: 0}
+  - name: $cutsceneRunning
+    type: 3
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: Set to true when cutscene is running
+    sourceYarnAsset: {instanceID: 0}

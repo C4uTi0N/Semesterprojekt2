@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent( typeof(FixedJoint))]
+[RequireComponent(typeof(FixedJoint))]
 public class Movable : MonoBehaviour, ContiniousInteractable
 {
     private GameObject box;
@@ -11,7 +11,7 @@ public class Movable : MonoBehaviour, ContiniousInteractable
 
     public string getInteractableText()
     {
-        return "Hold [E] to push or pull";
+        return "Hold E to push or pull";
     }
 
     void Awake()

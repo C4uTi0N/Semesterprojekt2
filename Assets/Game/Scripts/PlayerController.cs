@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Yarn.Unity;
 
 
 public class PlayerController : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;                                                   // Set Rigidbody component to "rb"
     private Transform player;                                               // Set Transform component to "player"
     private Camera playerCamera;                                            // Set Camera component to "playerCamera"
+    private InMemoryVariableStorage yarnMemmory;                            // Set InMemoryVariableStorage to "yarnMemory"
     public CapsuleCollider capsCollider;                                    // Set the Capsule Collider of the player
 
     // Movement input Axis & Direction
@@ -32,9 +34,12 @@ public class PlayerController : MonoBehaviour
     public bool canVault;                                                   // Bool to check if player can vault
     public bool isVaulting;                                                 // Bool to check if player is vaulting
     public bool isInteracting;                                              // Bool to check if player is interacting
+    public bool cutsceneRunning;                                            // Bool to check if cutscene is running
 
     private void Awake()
     {
+        yarnMemmory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
+
         rb = GetComponent<Rigidbody>();                                     // Set "rb" to Rigidbody of attached Gameobject
         rb.freezeRotation = true;                                           // Disable rotation through rigidbody
         rb.useGravity = false;                                              // Disable Gravity from Rigidbody
@@ -65,7 +70,12 @@ public class PlayerController : MonoBehaviour
 
     private void MovementInput()
     {
-        if (isGrounded && !isVaulting)
+        if (yarnMemmory.TryGetValue<bool>("$cutsceneRunning", out bool output))
+        {
+            cutsceneRunning = output;
+        }
+
+        if (isGrounded && !isVaulting && !cutsceneRunning)
         {
             xAxisMovement = Input.GetAxis("Horizontal") * movementSpeed;                // Get keyboard input for "A", "D" and "Right/Left Arrow", and apply movement speed;
             rb.velocity = new Vector2(xAxisMovement, rb.velocity.y);                    // Apply movement speed and direction to player velocity
@@ -180,6 +190,21 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(player.position + new Vector3(-boxSize.x, boxSize.y / 2), Vector2.right * (boxSize.x * 2), color);        // Top
         Debug.DrawRay(player.position + new Vector3(-boxSize.x, -boxSize.y / 2), Vector2.right * (boxSize.x * 2), color);       // Buttom
         
+    }
+
+    public bool CutsceneIsRunning
+    {
+        get { return cutsceneRunning; }
+        set
+        {
+            if (value == cutsceneRunning)
+            {
+                return;
+            }
+            cutsceneRunning = value;
+            if (cutsceneRunning)
+                cutsceneRunning = CutsceneIsRunning;
+        }
     }
 
     public bool CameraPanOut

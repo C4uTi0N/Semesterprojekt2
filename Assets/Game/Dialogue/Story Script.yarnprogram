@@ -2,4 +2,5 @@
 ---
 <<declare $foodShown = false "Is true when food has been shwon to Smol">>
 <<declare $smolFollow = false "If ture, Smol should follow Big">>
+<<declare $cutsceneRunning = false "Set to true when cutscene is running">>
 ===

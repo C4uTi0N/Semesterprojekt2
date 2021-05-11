@@ -17,7 +17,7 @@ Big: Sorry, we're out of food... * show the box to Smol *
 <<if $foodShown is true>>
     Big: Looks like we'll have to go out and find some.
     Smol: Aww.. Where to?
-    Big: There is a hospital with a cantina close body.
+    Big: There is a hospital with a cantina close by.
     Big: Lets check there.
     Smol: Hmph, okay.
     <<set $smolFollow to true>>
@@ -40,16 +40,19 @@ Big: It's fine. Dont worry.
 title: playground
 tags:
 ---
-Smol: A swing!! // *Runs happily torwards the swing*
-Smol: Come on!! Push me!!
+<<if $cutsceneRunning is true>>
+    Smol: A swing!! // *Runs happily torwards the swing*
+    Smol: Come on!! Push me!!
 
--> Push her on the swing for a while
-    <<jump swing>>
-    
--> Keep going
-    Big: No, we gotta go.
-    Big: Weren't you hungry?
-    <<jump keepGoing>>
+    -> Push her on the swing for a while
+        <<jump swing>>
+
+    -> Keep going
+        Big: No, we gotta go.
+        Big: Weren't you hungry?
+        <<jump keepGoing>>
+<<endif>>
+
 ===
 title: swing
 tags:
@@ -60,6 +63,8 @@ Big: Alright, that's enough.
 Big: We have to get going.
 Smol: Hmph, okay.
 Smol: Can we come back later?
+Big: Sure
+<<set $cutsceneRunning to false>>
 
 ===
 title: keepGoing
@@ -72,11 +77,43 @@ Smol: You're still boring though.
 Big: Sure
 Big: We can take a shortcut through this house.
 Big: The hospital is just on the other side.
+<<set $cutsceneRunning to false>>
 
 ===
-title: house
+title: zombie
 tags: 
 ---
+<<if $cutsceneRunning is true>>
+    Smol: Eeeek!
+    Big: Don't worry, they can't reach us.
+    Smol: How are we gonna get home now?
+    Big: We'll figure it out later.
+    <<set $cutsceneRunning to false>>
+<<endif>>
 
+===
+title: balcony
+tags:
+---
+<<if $cutsceneRunning is true>>
+    Big: Hmm, that balcony looks weak
+    * Push the chair out on the balcony *
+    <<set $cutsceneRunning to false>>
+<<endif>>
+
+===
+title: slope
+tags:
+---
+Smol: Weee!
+Big: Shush! There might be more of them...
+Smol: *whisper* Weee...
+
+===
+title: hospital
+tags:
+---
+Smol: Ther!... *whisper* oops - there it is.
+Big: I told you it was close, didn't i?
 
 ===

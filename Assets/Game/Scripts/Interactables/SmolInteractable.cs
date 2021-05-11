@@ -35,19 +35,5 @@ public class SmolInteractable : MonoBehaviour, Interactable
             yarnMemmory.SetValue("$foodShown", true);
             dialogueUI.MarkLineComplete();
         }
-
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

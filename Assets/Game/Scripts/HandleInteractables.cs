@@ -58,16 +58,17 @@ public class HandleInteractables : MonoBehaviour
         bool forwardRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 3, 0), playerForward, out hitInfoForward, 1.1f);
         bool inwardsRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards, out hitInfoInwards, 1.3f);
 
+
         if (forwardRaycast)
         {
-            interactTextObj.SetActive(true);
+            
             var forwardInteractable = hitInfoForward.collider.GetComponent<Interactable>();
+            var forwardContinousInteractable = hitInfoForward.collider.GetComponent<ContiniousInteractable>();
+
             if (forwardInteractable != null)
             {
                 handleInteraction(forwardInteractable);
             }
-
-            var forwardContinousInteractable = hitInfoForward.collider.GetComponent<ContiniousInteractable>();
 
             if (forwardContinousInteractable != null)
             {
@@ -78,7 +79,6 @@ public class HandleInteractables : MonoBehaviour
         {
             if (inwardsRaycast)
             {
-                interactTextObj.SetActive(true);
                 var hitItemInwards = hitInfoInwards.collider.GetComponent<Interactable>();
                 if (hitItemInwards != null)
                 {
@@ -91,7 +91,6 @@ public class HandleInteractables : MonoBehaviour
             }
             else
             {
-                interactTextObj.SetActive(false);
                 if (interactable.text != "")
                 {
                     interactable.text = "";
@@ -101,14 +100,12 @@ public class HandleInteractables : MonoBehaviour
 
         if (forwardInnerRaycast)
         {
-            interactTextObj.SetActive(true);
             var forwardInteractable = hitInfoForwardInner.collider.GetComponent<Interactable>();
+            var forwardContinousInteractable = hitInfoForwardInner.collider.GetComponent<ContiniousInteractable>();
             if (forwardInteractable != null)
             {
                 handleInteraction(forwardInteractable);
             }
-
-            var forwardContinousInteractable = hitInfoForwardInner.collider.GetComponent<ContiniousInteractable>();
 
             if (forwardContinousInteractable != null)
             {
@@ -119,7 +116,6 @@ public class HandleInteractables : MonoBehaviour
         {
             if (inwardsRaycast)
             {
-                interactTextObj.SetActive(true);
                 var hitItemInwards = hitInfoInwards.collider.GetComponent<Interactable>();
                 if (hitItemInwards != null)
                 {
@@ -132,7 +128,6 @@ public class HandleInteractables : MonoBehaviour
             }
             else
             {
-                interactTextObj.SetActive(false);
                 if (interactable.text != "")
                 {
                     interactable.text = "";
@@ -140,7 +135,14 @@ public class HandleInteractables : MonoBehaviour
             }
         }
 
-
+        if (forwardRaycast || forwardInnerRaycast || inwardsRaycast)
+        {
+            interactTextObj.SetActive(true);
+        }
+        else
+        {
+            interactTextObj.SetActive(false);
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
