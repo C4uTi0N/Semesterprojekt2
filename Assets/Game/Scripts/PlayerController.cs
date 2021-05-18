@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     public bool isInteracting;                                              // Bool to check if player is interacting
     public bool cutsceneRunning;                                            // Bool to check if cutscene is running
 
+    //Animations
+    public Animator boyAnimations;
+
     private void Awake()
     {
         yarnMemmory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour
         CheckGrounded();
         CheckVault();
         CameraFollower();
+        BoyAnimator();
     }
 
     private void FixedUpdate()
@@ -66,7 +70,27 @@ public class PlayerController : MonoBehaviour
         Vault();
         Gravity();
     }
+    private void BoyAnimator()
+    {
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            boyAnimations.SetFloat("boySpeed", 1);
+            boyAnimations.SetBool("boyRight", true);
+            boyAnimations.SetBool("boyIdle", false);
+        }
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            boyAnimations.SetFloat("boySpeed", -1);
+            boyAnimations.SetBool("boyRight", false);
+            boyAnimations.SetBool("boyIdle", false);
+        }
+        if (Input.GetAxis("Horizontal") == 0)
+        {
+            boyAnimations.SetFloat("boySpeed", 0);
+            boyAnimations.SetBool("boyIdle", true);
+        }
 
+    }
 
     private void MovementInput()
     {
@@ -83,6 +107,8 @@ public class PlayerController : MonoBehaviour
             if (rb.velocity.magnitude > maxSpeed)                                       // Clamp player movement speed to max speed
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
+
+                
             }
 
             if (!isInteracting)
@@ -99,6 +125,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    
 
     private void Vault()
     {

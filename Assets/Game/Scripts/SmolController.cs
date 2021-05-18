@@ -17,6 +17,8 @@ public class SmolController : MonoBehaviour
 
     public bool shouldFollow = false;
 
+    public Animator girlAnimations; //Animator
+
 
     private void Awake() 
     {
@@ -49,7 +51,12 @@ public class SmolController : MonoBehaviour
         {
             if (distance > minDistance)
             {
+                girlAnimations.SetBool("playAnimation", true);      //Starts animation if she's moving
                 rb.position = Vector2.Lerp(transform.position, target.position, speed / 100);
+            }
+            else
+            {
+                girlAnimations.SetBool("playAnimation", false);   //Stops animation if she's not moving
             }
         }
     }
