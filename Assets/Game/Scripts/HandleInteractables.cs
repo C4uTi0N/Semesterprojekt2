@@ -9,8 +9,28 @@ public class HandleInteractables : MonoBehaviour
     private Transform player;
     private Text interactable;
     private GameObject interactTextObj;
+    private GameObject hitObject;
     private PlayerController playerController;
+    private Interactable inwardInteractable;
+    private Interactable forwardInteractable;
+    private Interactable forwardInnerInteractable;
+    private ContiniousInteractable forwardContinousInteractable;
+
+    RaycastHit hitInfoForward;
+    RaycastHit hitInfoForwardInner;
+    RaycastHit hitInfoInward;
+
     public UnityEngine.Events.UnityEvent continueDialogue;
+
+
+    Vector3 playerForward;
+    bool raycastForward;
+
+    Vector3 playerForwardInner;
+    bool raycastForwardInner;
+
+    Vector3 playerInward;
+    bool raycastInward;
 
     private void Awake()
     {
@@ -20,137 +40,160 @@ public class HandleInteractables : MonoBehaviour
         playerController = GetComponent<PlayerController>();
     }
 
-    void handleInteraction(Interactable hit)
-    {
-        interactable.text = hit.getInteractableText();
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            hit.onInteraction();
-        }
-    }
-
-    void handleInteraction(ContiniousInteractable hit)
-    {
-        interactable.text = hit.getInteractableText();
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            hit.onInteractionStart();
-        } else
-        {
-            hit.onInteractionEnd();
-        }
-    }
-
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hitInfoForwardInner;
-        RaycastHit hitInfoForward;
-        RaycastHit hitInfoInwards;
-        Vector3 playerForwardInner = player.TransformDirection(Vector3.right);
-        Vector3 playerForward = player.TransformDirection(Vector3.right);
-        Vector3 playerInwards = Vector3.forward;
+        playerForward = player.TransformDirection(Vector3.right);
+        raycastForward = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 3, 0), playerForward, out hitInfoForward, 1.1f);
 
-        bool forwardInnerRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 3, 1), playerForwardInner, out hitInfoForwardInner, 1.1f);
-        bool forwardRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 3, 0), playerForward, out hitInfoForward, 1.1f);
-        bool inwardsRaycast = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards, out hitInfoInwards, 1.3f);
+        playerForwardInner = player.TransformDirection(Vector3.right);
+        raycastForwardInner = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 3, 1), playerForwardInner, out hitInfoForwardInner, 1.1f);
+
+        playerInward = Vector3.forward;
+        raycastInward = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInward, out hitInfoInward, 1.3f);
 
 
-        if (forwardRaycast)
+        RaycastColor();
+        if (raycastForward)
         {
-            
-            var forwardInteractable = hitInfoForward.collider.GetComponent<Interactable>();
-            var forwardContinousInteractable = hitInfoForward.collider.GetComponent<ContiniousInteractable>();
-
-            if (forwardInteractable != null)
-            {
-                handleInteraction(forwardInteractable);
-            }
-
-            if (forwardContinousInteractable != null)
-            {
-                handleInteraction(forwardContinousInteractable);
-            }
-        }
-        else
-        {
-            if (inwardsRaycast)
-            {
-                var hitItemInwards = hitInfoInwards.collider.GetComponent<Interactable>();
-                if (hitItemInwards != null)
-                {
-                    interactable.text = hitItemInwards.getInteractableText();
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        hitItemInwards.onInteraction();
-                    }
-                }
-            }
-            else
-            {
-                if (interactable.text != "")
-                {
-                    interactable.text = "";
-                }
-            }
+            RaycastForward();
         }
 
-        if (forwardInnerRaycast)
+        if (raycastForwardInner)
         {
-            var forwardInteractable = hitInfoForwardInner.collider.GetComponent<Interactable>();
-            var forwardContinousInteractable = hitInfoForwardInner.collider.GetComponent<ContiniousInteractable>();
-            if (forwardInteractable != null)
-            {
-                handleInteraction(forwardInteractable);
-            }
-
-            if (forwardContinousInteractable != null)
-            {
-                handleInteraction(forwardContinousInteractable);
-            }
-        }
-        else
-        {
-            if (inwardsRaycast)
-            {
-                var hitItemInwards = hitInfoInwards.collider.GetComponent<Interactable>();
-                if (hitItemInwards != null)
-                {
-                    interactable.text = hitItemInwards.getInteractableText();
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        hitItemInwards.onInteraction();
-                    }
-                }
-            }
-            else
-            {
-                if (interactable.text != "")
-                {
-                    interactable.text = "";
-                }
-            }
+            RaycastForwardInner();
         }
 
-        if (forwardRaycast || forwardInnerRaycast || inwardsRaycast)
+        if (raycastInward)
         {
-            interactTextObj.SetActive(true);
+            RaycastInward();
         }
-        else
+
+        if (!raycastForward && !raycastForwardInner && !raycastInward)
         {
             interactTextObj.SetActive(false);
+
+            if (interactable.text != "")
+            {
+                interactable.text = "";
+            }
+
+            RayHitExit();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             continueDialogue.Invoke();
         }
+    }
+
+    private void RaycastForward()
+    {
+        interactTextObj.SetActive(true);
+
+        forwardInteractable = hitInfoForward.collider.GetComponent<Interactable>();
+        forwardContinousInteractable = hitInfoForward.collider.GetComponent<ContiniousInteractable>();
+
+        
+
+        if (forwardInteractable != null)
+        {
+            RayHit(hitInfoForward.collider.gameObject);
+
+            interactable.text = forwardInteractable.getInteractableText();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                forwardInteractable.onInteraction();
+            }
+            return;
+        } 
+
+        if (forwardContinousInteractable != null)
+        {
+            RayHit(hitInfoForward.collider.gameObject);
+
+            interactable.text = forwardContinousInteractable.getInteractableText();
+            if (Input.GetKey(KeyCode.E))
+            {
+                forwardContinousInteractable.onInteractionStart();
+            }
+            else
+            {
+                forwardContinousInteractable.onInteractionEnd();
+            }
+            return;
+        }
+    }
+
+    private void RaycastForwardInner()
+    {
+        interactTextObj.SetActive(true);
+
+        forwardInnerInteractable = hitInfoForwardInner.collider.GetComponent<Interactable>();
+        forwardContinousInteractable = hitInfoForwardInner.collider.GetComponent<ContiniousInteractable>();
+
+        if (forwardInnerInteractable != null)
+        {
+            RayHit(hitInfoForwardInner.collider.gameObject);
+
+            interactable.text = forwardInnerInteractable.getInteractableText();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                forwardInnerInteractable.onInteraction();
+            }
+        }
+        
+        if (forwardContinousInteractable != null)
+        {
+            RayHit(hitInfoForwardInner.collider.gameObject);
+
+            interactable.text = forwardContinousInteractable.getInteractableText();
+            if (Input.GetKey(KeyCode.E))
+            {
+                forwardContinousInteractable.onInteractionStart();
+            }
+            else
+            {
+                forwardContinousInteractable.onInteractionEnd();
+            }
+        }
+    }
+
+    private void RaycastInward()
+    {
+        interactTextObj.SetActive(true);
+
+        inwardInteractable = hitInfoInward.collider.GetComponent<Interactable>();
+
+        if (inwardInteractable != null)
+        {
+            RayHit(hitInfoInward.collider.gameObject);
+
+            interactable.text = inwardInteractable.getInteractableText();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                inwardInteractable.onInteraction();
+            }
+        }
+    }
+
+    private void RaycastColor()
+    {
+        Color colorInward = Color.yellow;
+        if (raycastInward)
+        {
+            colorInward = Color.green;
+        }
+        else
+        {
+            colorInward = Color.yellow;
+        }
+        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInward * 1.3f, colorInward);
+
 
         Color colorForwards = Color.yellow;
-        if (forwardRaycast)
+        if (raycastForward || raycastForwardInner)
         {
             colorForwards = Color.green;
         }
@@ -158,19 +201,37 @@ public class HandleInteractables : MonoBehaviour
         {
             colorForwards = Color.yellow;
         }
-
-        Color colorInwards = Color.yellow;
-        if (inwardsRaycast)
-        {
-            colorInwards = Color.green;
-        }
-        else
-        {
-            colorInwards = Color.yellow;
-        }
-
         Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 3, 0), playerForward * 1.1f, colorForwards);
-        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 3, 1), playerForward * 1.1f, colorForwards);
-        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInwards * 1.3f, colorInwards);
+        Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 3, 1), playerForwardInner * 1.1f, colorForwards);
+    }
+
+    private void RayHit(GameObject interactable)
+    {
+
+        if (hitObject == null)
+        {
+            if (interactable != null)
+            {
+                hitObject = interactable;
+                if (!hitObject.GetComponent<DoorInteractable>())
+                    hitObject.SendMessage("RayHitEnter");
+            }
+        }
+
+        if (hitObject == interactable)
+        {
+            if (!hitObject.GetComponent<DoorInteractable>())
+                hitObject.SendMessage("RayHitEnter");
+        }
+    }
+
+    private void RayHitExit()
+    {
+        if (hitObject != null)
+        {
+            if (!hitObject.GetComponent<DoorInteractable>())
+                hitObject.SendMessage("RayHitExit");
+            hitObject = null;
+        }
     }
 }

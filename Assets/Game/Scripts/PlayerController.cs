@@ -70,10 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private void MovementInput()
     {
-        if (yarnMemmory.TryGetValue<bool>("$cutsceneRunning", out bool output))
-        {
-            cutsceneRunning = output;
-        }
+        yarnMemmory.TryGetValue<bool>("$cutsceneRunning", out bool cutsceneRunning);
 
         if (isGrounded && !isVaulting && !cutsceneRunning)
         {
@@ -190,21 +187,6 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(player.position + new Vector3(-boxSize.x, boxSize.y / 2), Vector2.right * (boxSize.x * 2), color);        // Top
         Debug.DrawRay(player.position + new Vector3(-boxSize.x, -boxSize.y / 2), Vector2.right * (boxSize.x * 2), color);       // Buttom
         
-    }
-
-    public bool CutsceneIsRunning
-    {
-        get { return cutsceneRunning; }
-        set
-        {
-            if (value == cutsceneRunning)
-            {
-                return;
-            }
-            cutsceneRunning = value;
-            if (cutsceneRunning)
-                cutsceneRunning = CutsceneIsRunning;
-        }
     }
 
     public bool CameraPanOut

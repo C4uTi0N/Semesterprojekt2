@@ -33,3 +33,24 @@ ScriptedImporter:
     defaultValueString: 
     description: Set to true when cutscene is running
     sourceYarnAsset: {instanceID: 0}
+  - name: $highlightPickup
+    type: 3
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: Highlight Pickup items
+    sourceYarnAsset: {instanceID: 0}
+  - name: $highlightMovable
+    type: 3
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: Highlight Movables
+    sourceYarnAsset: {instanceID: 0}
+  - name: $highlightSmol
+    type: 3
+    defaultValueBool: 0
+    defaultValueNumber: 0
+    defaultValueString: 
+    description: Highlight Smol
+    sourceYarnAsset: {instanceID: 0}

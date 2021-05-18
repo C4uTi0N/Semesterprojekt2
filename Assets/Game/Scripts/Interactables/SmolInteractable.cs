@@ -33,6 +33,7 @@ public class SmolInteractable : MonoBehaviour, Interactable
         if (player.GetComponent<Inventory>().hasItem("cereal box")) 
         {
             yarnMemmory.SetValue("$foodShown", true);
+            yarnMemmory.SetValue("$highlight", false);
             dialogueUI.MarkLineComplete();
         }
     }

@@ -1,20 +1,60 @@
 ﻿title: start
 tags:
 ---
+<<set $cutsceneRunning to true>>
 Smol: *Stomach rumbles*
 Big: Hungry?
 Smol: I'm starving. Is there any food left.
 Big: Let me check.
+<<set $cutsceneRunning to false>>
+
+===
+title: tutorial
+tags:
+---
+<<set $cutsceneRunning to true>>
+<<set $highlightMovable to true>>
+(SOME OBJECTS CAN BE MOVED)
+<<set $highlightMovable to false>>
+
+<<set $highlightPickup to true>>
+(SOME OBJECTS CAN'T BE REACHED WITHOUT THESE MOVEABLE OBJECTS)
+<<set $highlightPickup to false>>
+
+<<set $highlightMovable to true>>
+(THESE MOVABLE OBJECTS WILL HIGHLIGHT LIKE THE MILK BOX WHEN YOU WALK UP TO THEM)
+<<set $highlightMovable to false>>
+<<jump grabBox>>
+
+===
+title: grabBox
+tags:
+---
+<<set $cutsceneRunning to false>>
+<<set $highlightPickup to true>>
 * Grab tho cerael box on the shelf *
+<<jump grabBox>>
 
 ===
 title: grabFood
 tags:
 ---
 Big: (Hmph, it's empty...)
-Big: Sorry, we're out of food... * show the box to Smol *
+Big: Sorry, we're out of food... 
+Smol: Really!?
+
+<<jump showSmol>>
+
+===
+title: showSmol
+tags:
+---
+<<set $highlightSmol to true>>
+* show the box to Smol *
+
 
 <<if $foodShown is true>>
+    <<set $highlightSmol to false>>
     Big: Looks like we'll have to go out and find some.
     Smol: Aww.. Where to?
     Big: There is a hospital with a cantina close by.
@@ -24,7 +64,7 @@ Big: Sorry, we're out of food... * show the box to Smol *
 <<endif>>
 
 <<if $foodShown is false>>
-    <<jump grabFood>>
+    <<jump showSmol>>
 <<endif>>
 
 ===
@@ -40,6 +80,7 @@ Big: It's fine. Dont worry.
 title: playground
 tags:
 ---
+<<set $cutsceneRunning to true>>
 <<if $cutsceneRunning is true>>
     Smol: A swing!! // *Runs happily torwards the swing*
     Smol: Come on!! Push me!!
@@ -83,23 +124,22 @@ Big: The hospital is just on the other side.
 title: zombie
 tags: 
 ---
-<<if $cutsceneRunning is true>>
-    Smol: Eeeek!
-    Big: Don't worry, they can't reach us.
-    Smol: How are we gonna get home now?
-    Big: We'll figure it out later.
-    <<set $cutsceneRunning to false>>
-<<endif>>
+<<set $cutsceneRunning to true>>
+Smol: Eeeek!
+Big: Don't worry, they can't reach us.
+Smol: How are we gonna get home now?
+Big: We'll figure it out later.
+<<set $cutsceneRunning to false>>
+
 
 ===
 title: balcony
 tags:
 ---
-<<if $cutsceneRunning is true>>
-    Big: Hmm, that balcony looks weak
-    * Push the chair out on the balcony *
-    <<set $cutsceneRunning to false>>
-<<endif>>
+<<set $cutsceneRunning to true>>
+Big: Hmm, that balcony looks weak
+* Push the chair out on the balcony *
+<<set $cutsceneRunning to false>>
 
 ===
 title: slope

@@ -7,18 +7,19 @@ public class Movable : MonoBehaviour, ContiniousInteractable
 {
     private GameObject box;
     private GameObject player;
+    private SpriteRenderer sprite;
     FixedJoint joint;
+
+    void Awake()
+    {
+        box = gameObject;
+        player = GameObject.Find("Player Character");
+        joint = GetComponent<FixedJoint>();
+    }
 
     public string getInteractableText()
     {
         return "Hold E to push or pull";
-    }
-
-    void Awake()
-    {
-        box = this.gameObject;
-        player = GameObject.Find("Player Character");
-        joint = GetComponent<FixedJoint>();
     }
 
     public void onInteractionStart()
