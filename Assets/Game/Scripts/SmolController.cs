@@ -8,6 +8,7 @@ public class SmolController : MonoBehaviour
 {
     private InMemoryVariableStorage yarnMemory;
     private Rigidbody rb;
+    private Animator girlAnimations;
     public Transform target;
     
     private float distance;
@@ -17,7 +18,6 @@ public class SmolController : MonoBehaviour
 
     public bool shouldFollow = false;
 
-    public Animator girlAnimations; //Animator
 
 
     private void Awake() 
@@ -25,12 +25,16 @@ public class SmolController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+        girlAnimations = GetComponent<Animator>();
+
         yarnMemory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        shouldFollow = yarnMemory.TryGetValue<bool>("$smolFollow", out var smolFollow);
+
         if (rb.position.x < target.position.x)
         {
             rb.rotation = Quaternion.Euler(0, 0, 0);     // Set player rotation on Y axis to 90 deg
@@ -40,10 +44,6 @@ public class SmolController : MonoBehaviour
             rb.rotation = Quaternion.Euler(0, 180, 0);    // Set player rotation on Y axis to -90 deg
         }
 
-        if (yarnMemory.TryGetValue<bool>("$smolFollow", out var output))
-        {
-            shouldFollow = output;
-        }
 
         distance = Vector2.Distance(rb.position, target.position);
 

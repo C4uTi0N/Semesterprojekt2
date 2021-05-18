@@ -34,7 +34,9 @@ public class SmolInteractable : MonoBehaviour, Interactable
         {
             yarnMemmory.SetValue("$foodShown", true);
             yarnMemmory.SetValue("$highlight", false);
+            GameObject.Find("Milk Box").GetComponent<BoxCollider>().enabled = false;
             dialogueUI.MarkLineComplete();
+
         }
     }
 }

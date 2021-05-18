@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 65c6ece25f02bb243a635d2e287c6ee9
+guid: 1258b22bac4320e43842588d00e385a7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1377988397295891140
-    second: girl_walk_right_0
+      213: 5462897533643989647
+    second: boy_walk_left_flipped_0
   - first:
-      213: 1789637278393878996
-    second: girl_walk_right_1
+      213: 8945654012382313119
+    second: boy_walk_left_flipped_1
   - first:
-      213: -3350786212144873349
-    second: girl_walk_right_2
+      213: -7187478577785348864
+    second: boy_walk_left_flipped_2
   - first:
-      213: -3535702745523455178
-    second: girl_walk_right_3
+      213: 2537118061354145235
+    second: boy_walk_left_flipped_3
   - first:
-      213: 4298432216227788670
-    second: girl_walk_right_4
+      213: 4093745405703254208
+    second: boy_walk_left_flipped_4
   - first:
-      213: 1819014761292421023
-    second: girl_walk_right_5
+      213: 4492906674153474638
+    second: boy_walk_left_flipped_5
   - first:
-      213: 3180514771131459266
-    second: girl_walk_right_6
+      213: -62422785720449170
+    second: boy_walk_left_flipped_6
   - first:
-      213: 4660370691608652382
-    second: girl_walk_right_7
+      213: -2161252600368912386
+    second: boy_walk_left_flipped_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -66,11 +66,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 25.6
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -111,17 +111,29 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: girl_walk_right_0
+      name: boy_walk_left_flipped_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 56
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,20 +141,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3d81928ad660ece0800000000000000
-      internalID: -1377988397295891140
+      spriteID: f822539fc5c10db40800000000000000
+      internalID: 5462897533643989647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: girl_walk_right_1
+      name: boy_walk_left_flipped_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
-        height: 56
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d9c67f6f9116d810800000000000000
-      internalID: 1789637278393878996
+      spriteID: f9a789b9de8552c70800000000000000
+      internalID: 8945654012382313119
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: girl_walk_right_2
+      name: boy_walk_left_flipped_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
-        height: 56
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7004da71bd9f71d0800000000000000
-      internalID: -3350786212144873349
+      spriteID: 00ddf5c7052f04c90800000000000000
+      internalID: -7187478577785348864
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: girl_walk_right_3
+      name: boy_walk_left_flipped_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
-        height: 56
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +204,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63b73bdf519aeeec0800000000000000
-      internalID: -3535702745523455178
+      spriteID: 3d5dd304f67a53320800000000000000
+      internalID: 2537118061354145235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: girl_walk_right_4
+      name: boy_walk_left_flipped_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 32
-        height: 56
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +225,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e773a5b935917ab30800000000000000
-      internalID: 4298432216227788670
+      spriteID: 0c074d3c1c7efc830800000000000000
+      internalID: 4093745405703254208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: girl_walk_right_5
+      name: boy_walk_left_flipped_5
       rect:
         serializedVersion: 2
         x: 160
         y: 0
         width: 32
-        height: 56
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +246,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f97d600b9407e3910800000000000000
-      internalID: 1819014761292421023
+      spriteID: e4a46e1d0d20a5e30800000000000000
+      internalID: 4492906674153474638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: girl_walk_right_6
+      name: boy_walk_left_flipped_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 32
-        height: 56
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,20 +267,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c66c205555732c20800000000000000
-      internalID: 3180514771131459266
+      spriteID: e670e3f9eca322ff0800000000000000
+      internalID: -62422785720449170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: girl_walk_right_7
+      name: boy_walk_left_flipped_7
       rect:
         serializedVersion: 2
         x: 224
         y: 0
         width: 32
-        height: 56
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,8 +288,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5aa9fac376fca040800000000000000
-      internalID: 4660370691608652382
+      spriteID: ef72f15f530b102e0800000000000000
+      internalID: -2161252600368912386
       vertices: []
       indices: 
       edges: []
@@ -285,7 +297,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1dba16065c0233649a74e909c863e9f3
+    spriteID: e2e8e141d2ded164ca33c2934a48681b
     internalID: 0
     vertices: []
     indices: 

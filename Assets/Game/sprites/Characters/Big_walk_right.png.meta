@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 1258b22bac4320e43842588d00e385a7
+guid: f301a3f5b9dda3246a454e5a7dd62f1f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5462897533643989647
-    second: boy_walk_left_flipped_0
+      213: 5339306519901454305
+    second: boy_walk_right_0
   - first:
-      213: 8945654012382313119
-    second: boy_walk_left_flipped_1
+      213: 1729436902961488585
+    second: boy_walk_right_1
   - first:
-      213: -7187478577785348864
-    second: boy_walk_left_flipped_2
+      213: -3577319030546428079
+    second: boy_walk_right_2
   - first:
-      213: 2537118061354145235
-    second: boy_walk_left_flipped_3
+      213: -1709326311159236103
+    second: boy_walk_right_3
   - first:
-      213: 4093745405703254208
-    second: boy_walk_left_flipped_4
+      213: 5413411644036887534
+    second: boy_walk_right_4
   - first:
-      213: 4492906674153474638
-    second: boy_walk_left_flipped_5
+      213: -6288448161926135083
+    second: boy_walk_right_5
   - first:
-      213: -62422785720449170
-    second: boy_walk_left_flipped_6
+      213: 4684846948323155950
+    second: boy_walk_right_6
   - first:
-      213: -2161252600368912386
-    second: boy_walk_left_flipped_7
+      213: -1002760437290174655
+    second: boy_walk_right_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -67,10 +67,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 0
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 25.6
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -111,11 +111,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boy_walk_left_flipped_0
+      name: boy_walk_right_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,14 +141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f822539fc5c10db40800000000000000
-      internalID: 5462897533643989647
+      spriteID: 1ef37a1bdf6091a40800000000000000
+      internalID: 5339306519901454305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boy_walk_left_flipped_1
+      name: boy_walk_right_1
       rect:
         serializedVersion: 2
         x: 32
@@ -150,14 +162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9a789b9de8552c70800000000000000
-      internalID: 8945654012382313119
+      spriteID: 9c2a87643b1300810800000000000000
+      internalID: 1729436902961488585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boy_walk_left_flipped_2
+      name: boy_walk_right_2
       rect:
         serializedVersion: 2
         x: 64
@@ -171,14 +183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00ddf5c7052f04c90800000000000000
-      internalID: -7187478577785348864
+      spriteID: 15f09009b4fca5ec0800000000000000
+      internalID: -3577319030546428079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boy_walk_left_flipped_3
+      name: boy_walk_right_3
       rect:
         serializedVersion: 2
         x: 96
@@ -192,14 +204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d5dd304f67a53320800000000000000
-      internalID: 2537118061354145235
+      spriteID: 9f9ff12c6c04748e0800000000000000
+      internalID: -1709326311159236103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boy_walk_left_flipped_4
+      name: boy_walk_right_4
       rect:
         serializedVersion: 2
         x: 128
@@ -213,14 +225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c074d3c1c7efc830800000000000000
-      internalID: 4093745405703254208
+      spriteID: ee338c1753d402b40800000000000000
+      internalID: 5413411644036887534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boy_walk_left_flipped_5
+      name: boy_walk_right_5
       rect:
         serializedVersion: 2
         x: 160
@@ -234,14 +246,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4a46e1d0d20a5e30800000000000000
-      internalID: 4492906674153474638
+      spriteID: 5d24fefd6b1fab8a0800000000000000
+      internalID: -6288448161926135083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boy_walk_left_flipped_6
+      name: boy_walk_right_6
       rect:
         serializedVersion: 2
         x: 192
@@ -255,14 +267,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e670e3f9eca322ff0800000000000000
-      internalID: -62422785720449170
+      spriteID: eefdfd56a7be30140800000000000000
+      internalID: 4684846948323155950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boy_walk_left_flipped_7
+      name: boy_walk_right_7
       rect:
         serializedVersion: 2
         x: 224
@@ -276,8 +288,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef72f15f530b102e0800000000000000
-      internalID: -2161252600368912386
+      spriteID: 147f084f1ba7512f0800000000000000
+      internalID: -1002760437290174655
       vertices: []
       indices: 
       edges: []
@@ -285,7 +297,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e2e8e141d2ded164ca33c2934a48681b
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

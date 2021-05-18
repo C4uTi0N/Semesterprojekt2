@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Camera playerCamera;                                            // Set Camera component to "playerCamera"
     private InMemoryVariableStorage yarnMemmory;                            // Set InMemoryVariableStorage to "yarnMemory"
     public CapsuleCollider capsCollider;                                    // Set the Capsule Collider of the player
+    private Animator boyAnimations;                                         // Set the Animator to "boyAnimations"
 
     // Movement input Axis & Direction
     private float xAxisMovement;                                            // Movement on the "X" axis
@@ -36,8 +37,6 @@ public class PlayerController : MonoBehaviour
     public bool isInteracting;                                              // Bool to check if player is interacting
     public bool cutsceneRunning;                                            // Bool to check if cutscene is running
 
-    //Animations
-    public Animator boyAnimations;
 
     private void Awake()
     {
@@ -49,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
         player = GetComponent<Transform>();                                 // Set "player" to Transform of attached gameobject
         capsCollider = GetComponent<CapsuleCollider>();
+        boyAnimations = GetComponent<Animator>();
 
         playerCamera = FindObjectOfType<Camera>();                          // Find the only camera in the scene and set it "camera"
 
@@ -70,27 +70,7 @@ public class PlayerController : MonoBehaviour
         Vault();
         Gravity();
     }
-    private void BoyAnimator()
-    {
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            boyAnimations.SetFloat("boySpeed", 1);
-            boyAnimations.SetBool("boyRight", true);
-            boyAnimations.SetBool("boyIdle", false);
-        }
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            boyAnimations.SetFloat("boySpeed", -1);
-            boyAnimations.SetBool("boyRight", false);
-            boyAnimations.SetBool("boyIdle", false);
-        }
-        if (Input.GetAxis("Horizontal") == 0)
-        {
-            boyAnimations.SetFloat("boySpeed", 0);
-            boyAnimations.SetBool("boyIdle", true);
-        }
-
-    }
+    
 
     private void MovementInput()
     {
@@ -122,7 +102,28 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+
+    private void BoyAnimator()
+    {
+        if (rb.velocity.x > 0)
+        {
+            boyAnimations.SetFloat("boySpeed", 1);
+            boyAnimations.SetBool("boyRight", true);
+            boyAnimations.SetBool("boyIdle", false);
+        }
+        if (rb.velocity.x < 0)
+        {
+            boyAnimations.SetFloat("boySpeed", -1);
+            boyAnimations.SetBool("boyRight", false);
+            boyAnimations.SetBool("boyIdle", false);
+        }
+        if (Input.GetAxis("Horizontal") == 0)
+        {
+            boyAnimations.SetFloat("boySpeed", 0);
+            boyAnimations.SetBool("boyIdle", true);
+        }
+
+    }
 
     private void Vault()
     {
