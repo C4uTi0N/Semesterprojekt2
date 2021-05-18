@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd86e4e5bc3b7a4db02e1aa6b214e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -126,6 +127,7 @@ MonoBehaviour:
           m_StringArgument: grabFood
           m_BoolArgument: 1
         m_CallState: 2
+  soundClip: {fileID: 8300000, guid: 4c880fb29eb59c34aa32b510c135a939, type: 3}
 --- !u!114 &355491074
 MonoBehaviour:
   m_ObjectHideFlags: 0

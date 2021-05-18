@@ -9,7 +9,10 @@ public class SmolController : MonoBehaviour
     private InMemoryVariableStorage yarnMemory;
     private Rigidbody rb;
     public Transform target;
-    
+
+    public AudioClip soundClip;
+    public AudioSource audioManager;
+
     private float distance;
 
     public float speed = 3;
@@ -45,11 +48,21 @@ public class SmolController : MonoBehaviour
 
         distance = Vector2.Distance(rb.position, target.position);
 
+        
         if (shouldFollow)
         {
+           
             if (distance > minDistance)
             {
                 rb.position = Vector2.Lerp(transform.position, target.position, speed / 100);
+                if (!audioManager.isPlaying)
+                {
+                    audioManager.PlayOneShot(soundClip);
+                }
+            }
+            else
+            {
+                audioManager.Stop();
             }
         }
     }
