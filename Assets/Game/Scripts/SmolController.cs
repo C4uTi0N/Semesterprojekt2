@@ -10,6 +10,10 @@ public class SmolController : MonoBehaviour
     public Transform target;
     private PlayerController playerController;
 
+
+    public AudioClip soundClip;
+    public AudioSource audioManager;
+
     private float distance;
 
     public float speed = 3;
@@ -52,16 +56,23 @@ public class SmolController : MonoBehaviour
 
         distance = Vector2.Distance(rb.position, target.position);
 
+        
         if (shouldFollow)
         {
+           
             if (distance > minDistance)
             {
                 girlAnimations.SetBool("playAnimation", true);      //Starts animation if she's moving
                 rb.position = Vector2.Lerp(transform.position, target.position, speed / 100);
+                if (!audioManager.isPlaying)
+                {
+                    audioManager.PlayOneShot(soundClip);
+                }
             }
             else
             {
-                girlAnimations.SetBool("playAnimation", false);   //Stops animation if she's not moving
+                girlAnimations.SetBool("playAnimation", false);   //Stops animation if she's not moving;
+                audioManager.Stop();
             }
         }
     }

@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
     public bool cameraPanOut = false;                                       // If true, camera will pan out when moving
     public bool cameraFollow = true;                                        // If true, camera will follow when moving
 
+
+    public AudioClip soundClip;
+    public AudioSource audioManager;
+
     //Debug bools
     [Header("Debug bools", order = 2)]
     public bool isGrounded;                                                 // Bool to check if player is on ground
@@ -84,6 +88,16 @@ public class PlayerController : MonoBehaviour
             xAxisMovement = Input.GetAxis("Horizontal") * movementSpeed;                // Get keyboard input for "A", "D" and "Right/Left Arrow", and apply movement speed;
             rb.velocity = new Vector2(xAxisMovement, rb.velocity.y);                    // Apply movement speed and direction to player velocity
 
+            if (xAxisMovement != 0) { 
+                if(!audioManager.isPlaying)
+                {
+                    audioManager.PlayOneShot(soundClip);
+                }
+            }
+            else
+            {
+                audioManager.Stop();
+            }
             if (rb.velocity.magnitude > maxSpeed)                                       // Clamp player movement speed to max speed
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
@@ -101,7 +115,9 @@ public class PlayerController : MonoBehaviour
                     player.rotation = Quaternion.Euler(0, 180, 0);    // Set player rotation on Y axis to -90 deg
                 }
             }
+           
         }
+
     }
 
     private void BoyAnimator()

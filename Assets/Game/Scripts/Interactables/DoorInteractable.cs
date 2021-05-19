@@ -7,6 +7,9 @@ public class DoorInteractable : MonoBehaviour, Interactable
     public string pressETo = " enter/go to [destination name]";
     public UnityEngine.Events.UnityEvent onInteract;
 
+    public AudioClip soundClip;
+    public AudioSource audioManager;
+
     public string getInteractableText()
     {
         if (smolController != null)
@@ -33,11 +36,13 @@ public class DoorInteractable : MonoBehaviour, Interactable
             if (smolController.shouldFollow)
             {
                 onInteract.Invoke();
+                audioManager.PlayOneShot(soundClip);
             }
         }
         else
         {
             onInteract.Invoke();
+            audioManager.PlayOneShot(soundClip);
         }
     }
 }

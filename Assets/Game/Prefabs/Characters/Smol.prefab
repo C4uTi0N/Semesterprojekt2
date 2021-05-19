@@ -176,6 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  audioManager: {fileID: 0}
+  soundClip: {fileID: 0}
   speed: 2
   minDistance: 2
   shouldFollow: 0
