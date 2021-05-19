@@ -1,0 +1,792 @@
+fileFormatVersion: 2
+guid: d9249ecc41bb12c48af95768a9d61d2a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7135014407919522858
+    second: Zombie_emerge_0
+  - first:
+      213: -1003395942156459437
+    second: Zombie_emerge_1
+  - first:
+      213: -8791752368260349807
+    second: Zombie_emerge_2
+  - first:
+      213: -8561238382820159961
+    second: Zombie_emerge_3
+  - first:
+      213: -9120629135930352456
+    second: Zombie_emerge_4
+  - first:
+      213: -2979823455626022162
+    second: Zombie_emerge_5
+  - first:
+      213: 4606785970037649866
+    second: Zombie_emerge_6
+  - first:
+      213: -1239785273726030668
+    second: Zombie_emerge_7
+  - first:
+      213: -7107124896651068275
+    second: Zombie_emerge_8
+  - first:
+      213: -4045982907781027082
+    second: Zombie_emerge_9
+  - first:
+      213: -4989728026539055764
+    second: Zombie_emerge_10
+  - first:
+      213: -456550578840286703
+    second: Zombie_emerge_11
+  - first:
+      213: -491574282157833609
+    second: Zombie_emerge_12
+  - first:
+      213: -2409383365251169959
+    second: Zombie_emerge_13
+  - first:
+      213: -4143697999127148290
+    second: Zombie_emerge_14
+  - first:
+      213: 5098450243694691339
+    second: Zombie_emerge_15
+  - first:
+      213: 7068699585821913532
+    second: Zombie_emerge_16
+  - first:
+      213: -959960160291652474
+    second: Zombie_emerge_17
+  - first:
+      213: 9219300108664412129
+    second: Zombie_emerge_18
+  - first:
+      213: -948921189672710762
+    second: Zombie_emerge_19
+  - first:
+      213: -4430513063656613502
+    second: Zombie_emerge_20
+  - first:
+      213: -1790785366214282099
+    second: Zombie_emerge_21
+  - first:
+      213: -4263329827517894321
+    second: Zombie_emerge_22
+  - first:
+      213: -5680421988291472150
+    second: Zombie_emerge_23
+  - first:
+      213: -1140173839173622242
+    second: Zombie_emerge_24
+  - first:
+      213: 8602191489737489574
+    second: Zombie_emerge_25
+  - first:
+      213: -1998526803954960069
+    second: Zombie_emerge_26
+  - first:
+      213: -8976681865810749399
+    second: Zombie_emerge_27
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 25.6
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Zombie_emerge_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 507
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dba9ace2365bfc90800000000000000
+      internalID: -7135014407919522858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_1
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 507
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35222b2f4b83312f0800000000000000
+      internalID: -1003395942156459437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_2
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 507
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19084a04dcb6df580800000000000000
+      internalID: -8791752368260349807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_3
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 507
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72e809adc0f503980800000000000000
+      internalID: -8561238382820159961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_4
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 507
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bc1bc0cf140d6180800000000000000
+      internalID: -9120629135930352456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_5
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 507
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee2b80ada5a85a6d0800000000000000
+      internalID: -2979823455626022162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_6
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 507
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac1f8549e679eef30800000000000000
+      internalID: 4606785970037649866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 338
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bcacc9bcd56bcee0800000000000000
+      internalID: -1239785273726030668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_8
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 338
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8c37c8cf8b6e5d90800000000000000
+      internalID: -7107124896651068275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_9
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 338
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fae86e5bf7c9d7c0800000000000000
+      internalID: -4045982907781027082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_10
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 338
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c65245cebcce0cab0800000000000000
+      internalID: -4989728026539055764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_11
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 338
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11ac93edaa10aa9f0800000000000000
+      internalID: -456550578840286703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_12
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 338
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 772c34b7bc39d29f0800000000000000
+      internalID: -491574282157833609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_13
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 338
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95108724896209ed0800000000000000
+      internalID: -2409383365251169959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 169
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef88781cf90ae76c0800000000000000
+      internalID: -4143697999127148290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_15
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 169
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b040d60eb7551c640800000000000000
+      internalID: 5098450243694691339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_16
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 169
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb1bddc52d0191260800000000000000
+      internalID: 7068699585821913532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_17
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 169
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68cf94ff1598da2f0800000000000000
+      internalID: -959960160291652474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_18
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 169
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e799a65a9881ff70800000000000000
+      internalID: 9219300108664412129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_19
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 169
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69d87b1a431c4d2f0800000000000000
+      internalID: -948921189672710762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_20
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 169
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 289150ca7d7a382c0800000000000000
+      internalID: -4430513063656613502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8474d9823ad527e0800000000000000
+      internalID: -1790785366214282099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_22
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 0
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f41f7762c1c95d4c0800000000000000
+      internalID: -4263329827517894321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_23
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 0
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae4919d3c461b21b0800000000000000
+      internalID: -5680421988291472150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_24
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 0
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e16ecd52fe94d20f0800000000000000
+      internalID: -1140173839173622242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_25
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 0
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6acf0b3659f116770800000000000000
+      internalID: 8602191489737489574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_26
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 0
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39fa20e57ec344e0800000000000000
+      internalID: -1998526803954960069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie_emerge_27
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 0
+        width: 237
+        height: 169
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 928d8ae476b6c6380800000000000000
+      internalID: -8976681865810749399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 8ab52e35feda2284cb2d30b5e982c868
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

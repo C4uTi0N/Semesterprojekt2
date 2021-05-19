@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -7,7 +5,6 @@ public class DialogueProgresser : MonoBehaviour
 {
     private InMemoryVariableStorage yarnMemmory;
     public UnityEngine.Events.UnityEvent onCollide;
-
 
     private void Awake()
     {

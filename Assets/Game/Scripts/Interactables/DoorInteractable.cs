@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorInteractable : MonoBehaviour, Interactable
@@ -21,7 +19,8 @@ public class DoorInteractable : MonoBehaviour, Interactable
             {
                 return ("You shouldn't leave yet");
             }
-        } else
+        }
+        else
         {
             return ("Press [E] to " + pressETo);
         }

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
@@ -10,9 +7,9 @@ public class PlayerMover : MonoBehaviour
 
     public void MoveThroughDoor(Transform spawnLocation)
     {
-        Vector3 spawnLocationOffest = new Vector3(spawnLocation.position.x - 0.5f, spawnLocation.position.y, 1.5f);
+        Vector3 smolSpawnLocation = spawnLocation.position + new Vector3(-0.5f, -1, 1);
 
         player.position = spawnLocation.position;
-        smol.position = spawnLocationOffest;
+        smol.position = smolSpawnLocation;
     }
 }

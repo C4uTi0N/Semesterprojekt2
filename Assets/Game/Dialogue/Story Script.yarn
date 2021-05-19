@@ -85,7 +85,7 @@ tags:
     Smol: A swing!! // *Runs happily torwards the swing*
     Smol: Come on!! Push me!!
 
-    -> Push her on the swing for a while
+    -> Play on the swing
         <<jump swing>>
 
     -> Keep going
@@ -126,7 +126,7 @@ tags:
 ---
 <<set $cutsceneRunning to true>>
 Smol: Eeeek!
-Big: Don't worry, they can't reach us.
+Big: Don't worry, it can't reach us.
 Smol: How are we gonna get home now?
 Big: We'll figure it out later.
 <<set $cutsceneRunning to false>>

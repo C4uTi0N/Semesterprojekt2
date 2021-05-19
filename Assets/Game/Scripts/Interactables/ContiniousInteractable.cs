@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public interface ContiniousInteractable
 {
     public string getInteractableText();
@@ -9,6 +5,4 @@ public interface ContiniousInteractable
     void onInteractionStart();
 
     void onInteractionEnd();
-
-
 }

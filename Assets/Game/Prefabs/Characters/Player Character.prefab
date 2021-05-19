@@ -155,6 +155,7 @@ MonoBehaviour:
   vaultSpeed: 5
   maxSpeed: 20
   cameraPanOut: 0
+  cameraFollow: 1
   isGrounded: 0
   canVault: 0
   isVaulting: 0
@@ -172,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570ed787d8c810047ab28576ddf57c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitObject: {fileID: 0}
   continueDialogue:
     m_PersistentCalls:
       m_Calls:

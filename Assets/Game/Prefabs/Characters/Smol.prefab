@@ -149,6 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8da8379a2958ed4f8c9176e7f1f068a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInv: {fileID: 0}
+  shownFood: 0
 --- !u!114 &531407916058407424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,4 +179,3 @@ MonoBehaviour:
   speed: 2
   minDistance: 2
   shouldFollow: 0
-  girlAnimations: {fileID: 0}

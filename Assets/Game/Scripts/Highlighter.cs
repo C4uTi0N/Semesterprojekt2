@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -7,13 +5,18 @@ public class Highlighter : MonoBehaviour
 {
     private SpriteRenderer sprite;
     private InMemoryVariableStorage yarnMemmory;
+    private Inventory playerInv;
+    private HandleInteractables handleInteractables;
 
-    bool shouldHighlight = false;
+    private bool shouldHighlight = false;
 
-    void Awake()
+    private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
         yarnMemmory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
+
+        playerInv = GameObject.Find("Player Character").GetComponent<Inventory>();
+        handleInteractables = GameObject.Find("Player Character").GetComponent<HandleInteractables>();
     }
 
     private void Update()
@@ -29,12 +32,9 @@ public class Highlighter : MonoBehaviour
                 sprite.color = Color.Lerp(Color.black, Color.white, Mathf.PingPong(Time.time, 1));
             }
         }
-        else
+        else if (GetComponent<PickupInteractable>())
         {
-            if (GetComponent<PickupInteractable>())
-            {
-                sprite.color = Color.white;
-            }
+            sprite.color = Color.white;
         }
 
         if (outputMovable)
@@ -44,12 +44,9 @@ public class Highlighter : MonoBehaviour
                 sprite.color = Color.Lerp(Color.black, Color.white, Mathf.PingPong(Time.time, 1));
             }
         }
-        else
+        else if (GetComponent<Movable>())
         {
-            if (GetComponent<Movable>())
-            {
-                sprite.color = Color.white;
-            }
+            sprite.color = Color.white;
         }
 
         if (outputSmol)
@@ -58,17 +55,26 @@ public class Highlighter : MonoBehaviour
             {
                 sprite.color = Color.Lerp(Color.black, Color.white, Mathf.PingPong(Time.time, 1));
             }
-        } 
-        else
+        }
+        else if (GetComponent<SmolInteractable>())
         {
-            if (GetComponent<SmolInteractable>())
-            {
-                sprite.color = Color.white;
-            }
+            sprite.color = Color.white;
         }
 
         if (shouldHighlight)
         {
+            if (handleInteractables.hitObject.GetComponent<SmolInteractable>())
+            {
+                if (playerInv.hasItem("cereal box"))
+                {
+                    sprite.color = Color.Lerp(Color.black, Color.white, Mathf.PingPong(Time.time, 1));
+                    return;
+                }
+                else
+                {
+                    return;
+                }
+            }
             sprite.color = Color.Lerp(Color.black, Color.white, Mathf.PingPong(Time.time, 1));
         }
     }

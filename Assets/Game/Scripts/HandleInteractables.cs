@@ -1,49 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class HandleInteractables : MonoBehaviour
 {
-    private Transform player;
-    private Text interactable;
     private GameObject interactTextObj;
-    private GameObject hitObject;
     private PlayerController playerController;
+    private Inventory playerInv;
+    private Transform player;
+
+    private Text interactable;
     private Interactable inwardInteractable;
     private Interactable forwardInteractable;
     private Interactable forwardInnerInteractable;
     private ContiniousInteractable forwardContinousInteractable;
 
-    RaycastHit hitInfoForward;
-    RaycastHit hitInfoForwardInner;
-    RaycastHit hitInfoInward;
+    private InMemoryVariableStorage yarnMemmory;
+
+    public GameObject hitObject;
+
+    private RaycastHit hitInfoForward;
+    private RaycastHit hitInfoForwardInner;
+    private RaycastHit hitInfoInward;
 
     public UnityEngine.Events.UnityEvent continueDialogue;
 
+    private Vector3 playerForward;
+    private bool raycastForward;
 
-    Vector3 playerForward;
-    bool raycastForward;
+    private Vector3 playerForwardInner;
+    private bool raycastForwardInner;
 
-    Vector3 playerForwardInner;
-    bool raycastForwardInner;
+    private Vector3 playerInward;
+    private bool raycastInward;
 
-    Vector3 playerInward;
-    bool raycastInward;
+    private bool cutsceneRun;
 
     private void Awake()
     {
+        playerController = GetComponent<PlayerController>();
+        playerInv = GetComponent<Inventory>();
         player = GetComponent<Transform>();
         interactTextObj = GameObject.Find("Interact");
         interactable = GameObject.Find("Press [E] to interact").GetComponent<Text>();
-        playerController = GetComponent<PlayerController>();
+
+        yarnMemmory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
     }
 
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        yarnMemmory.TryGetValue<bool>("$cutsceneRunning", out bool cutsceneRunning);
+        cutsceneRun = cutsceneRunning;
+
         playerForward = player.TransformDirection(Vector3.right);
         raycastForward = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 3, 0), playerForward, out hitInfoForward, 1.1f);
 
@@ -52,7 +61,6 @@ public class HandleInteractables : MonoBehaviour
 
         playerInward = Vector3.forward;
         raycastInward = Physics.Raycast(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInward, out hitInfoInward, 1.3f);
-
 
         RaycastColor();
         if (raycastForward)
@@ -90,31 +98,27 @@ public class HandleInteractables : MonoBehaviour
 
     private void RaycastForward()
     {
-        interactTextObj.SetActive(true);
-
         forwardInteractable = hitInfoForward.collider.GetComponent<Interactable>();
         forwardContinousInteractable = hitInfoForward.collider.GetComponent<ContiniousInteractable>();
-
-        
 
         if (forwardInteractable != null)
         {
             RayHit(hitInfoForward.collider.gameObject);
 
             interactable.text = forwardInteractable.getInteractableText();
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !cutsceneRun)
             {
                 forwardInteractable.onInteraction();
             }
             return;
-        } 
+        }
 
         if (forwardContinousInteractable != null)
         {
             RayHit(hitInfoForward.collider.gameObject);
 
             interactable.text = forwardContinousInteractable.getInteractableText();
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E) && !cutsceneRun)
             {
                 forwardContinousInteractable.onInteractionStart();
             }
@@ -128,8 +132,6 @@ public class HandleInteractables : MonoBehaviour
 
     private void RaycastForwardInner()
     {
-        interactTextObj.SetActive(true);
-
         forwardInnerInteractable = hitInfoForwardInner.collider.GetComponent<Interactable>();
         forwardContinousInteractable = hitInfoForwardInner.collider.GetComponent<ContiniousInteractable>();
 
@@ -138,18 +140,18 @@ public class HandleInteractables : MonoBehaviour
             RayHit(hitInfoForwardInner.collider.gameObject);
 
             interactable.text = forwardInnerInteractable.getInteractableText();
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !cutsceneRun)
             {
                 forwardInnerInteractable.onInteraction();
             }
         }
-        
+
         if (forwardContinousInteractable != null)
         {
             RayHit(hitInfoForwardInner.collider.gameObject);
 
             interactable.text = forwardContinousInteractable.getInteractableText();
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E) && !cutsceneRun)
             {
                 forwardContinousInteractable.onInteractionStart();
             }
@@ -162,8 +164,6 @@ public class HandleInteractables : MonoBehaviour
 
     private void RaycastInward()
     {
-        interactTextObj.SetActive(true);
-
         inwardInteractable = hitInfoInward.collider.GetComponent<Interactable>();
 
         if (inwardInteractable != null)
@@ -171,7 +171,7 @@ public class HandleInteractables : MonoBehaviour
             RayHit(hitInfoInward.collider.gameObject);
 
             interactable.text = inwardInteractable.getInteractableText();
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !cutsceneRun)
             {
                 inwardInteractable.onInteraction();
             }
@@ -191,7 +191,6 @@ public class HandleInteractables : MonoBehaviour
         }
         Debug.DrawRay(player.position + new Vector3(0, playerController.capsCollider.height / 2, 0), playerInward * 1.3f, colorInward);
 
-
         Color colorForwards = Color.yellow;
         if (raycastForward || raycastForwardInner)
         {
@@ -207,14 +206,28 @@ public class HandleInteractables : MonoBehaviour
 
     private void RayHit(GameObject interactable)
     {
-
         if (hitObject == null)
         {
             if (interactable != null)
             {
                 hitObject = interactable;
+
                 if (!hitObject.GetComponent<DoorInteractable>())
                     hitObject.SendMessage("RayHitEnter");
+
+                if (hitObject.GetComponent<SmolInteractable>())
+                {
+                    if (playerInv.hasItem("cereal box"))
+                    {
+                        interactTextObj.SetActive(true);
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                interactTextObj.SetActive(true);
             }
         }
 
@@ -222,6 +235,20 @@ public class HandleInteractables : MonoBehaviour
         {
             if (!hitObject.GetComponent<DoorInteractable>())
                 hitObject.SendMessage("RayHitEnter");
+
+            if (hitObject.GetComponent<SmolInteractable>())
+            {
+                if (playerInv.hasItem("cereal box"))
+                {
+                    interactTextObj.SetActive(true);
+                    return;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            interactTextObj.SetActive(true);
         }
     }
 

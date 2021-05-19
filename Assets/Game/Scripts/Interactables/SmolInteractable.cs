@@ -1,26 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
 public class SmolInteractable : MonoBehaviour, Interactable
 {
-    private GameObject player;
+    public Inventory playerInv;
     private DialogueUI dialogueUI;
     private InMemoryVariableStorage yarnMemmory;
 
-    void Awake()
+    public bool shownFood;
+
+    private void Awake()
     {
-        player = GameObject.Find("Player Character");
+        playerInv = GameObject.Find("Player Character").GetComponent<Inventory>();
         dialogueUI = GameObject.Find("Dialogue Runner").GetComponent<DialogueUI>();
         yarnMemmory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
     }
 
     public string getInteractableText()
     {
-        if (player.GetComponent<Inventory>().hasItem("cereal box"))
+        if (playerInv.hasItem("cereal box"))
         {
-            if (!yarnMemmory.TryGetValue<bool>("$foodShown", out bool output))
+            if (!yarnMemmory.TryGetValue<bool>("$foodShown", out bool foodShown))
             {
                 return "Press E to show Smol the box";
             }
@@ -30,13 +30,13 @@ public class SmolInteractable : MonoBehaviour, Interactable
 
     public void onInteraction()
     {
-        if (player.GetComponent<Inventory>().hasItem("cereal box")) 
+        if (playerInv.hasItem("cereal box"))
         {
+            playerInv.removeFromInventory("cereal box");
             yarnMemmory.SetValue("$foodShown", true);
             yarnMemmory.SetValue("$highlight", false);
             GameObject.Find("Milk Box").GetComponent<BoxCollider>().enabled = false;
             dialogueUI.MarkLineComplete();
-
         }
     }
 }

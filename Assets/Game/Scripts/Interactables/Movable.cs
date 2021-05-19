@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(FixedJoint))]
@@ -8,9 +6,9 @@ public class Movable : MonoBehaviour, ContiniousInteractable
     private GameObject box;
     private GameObject player;
     private SpriteRenderer sprite;
-    FixedJoint joint;
+    private FixedJoint joint;
 
-    void Awake()
+    private void Awake()
     {
         box = gameObject;
         player = GameObject.Find("Player Character");
@@ -27,7 +25,6 @@ public class Movable : MonoBehaviour, ContiniousInteractable
         box.GetComponent<Rigidbody>().isKinematic = false;
         player.GetComponent<PlayerController>().isInteracting = true;
         joint.connectedBody = player.GetComponent<Rigidbody>();
-        
     }
 
     public void onInteractionEnd()
@@ -37,6 +34,4 @@ public class Movable : MonoBehaviour, ContiniousInteractable
         box.GetComponent<Rigidbody>().isKinematic = true;
         player.GetComponent<PlayerController>().isInteracting = false;
     }
-
-
 }
