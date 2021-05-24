@@ -2,64 +2,67 @@ using System.Collections;
 using UnityEngine;
 using Yarn.Unity;
 
+
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Transform))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
-    //Components
+    // Components
     private Rigidbody rb;                                                   // Set Rigidbody component to "rb"
-
-    private Transform player;                                               // Set Transform component to "player"
+    private Transform playerTrans;                                          // Set Transform component to "player"
     private Camera playerCamera;                                            // Set Camera component to "playerCamera"
-    private InMemoryVariableStorage yarnMemmory;                            // Set InMemoryVariableStorage to "yarnMemory"
-    public CapsuleCollider capsCollider;                                    // Set the Capsule Collider of the player
     private Animator boyAnimations;                                         // Set the Animator to "boyAnimations"
     private GameObject smol;                                                // Set GameObject component to "smol"
+    private InMemoryVariableStorage yarnMemmory;                            // Set InMemoryVariableStorage to "yarnMemory"
+    private AudioSource audioSrc;                                           // Set AudioSource to "audioSrc"
+    public CapsuleCollider capsCollider;                                    // Set the Capsule Collider of the player
+
 
     // Movement input Axis & Direction
     private float xAxisMovement;                                            // Movement on the "X" axis
 
     // Player Settings
     private float gravity = 9.82f;                                          // Gravity value
-
     private float playerPositionOffset;                                     // Offset fo player position for camera
     private float cameraOffsetY;                                            // Offset for camera on Y axis
 
     [Header("Player settings", order = 1)]
     public float gravityMultiplier = 5;                                     // Gravity Multiplier
-
     public float movementSpeed = 10f;                                       // Movement speed
     public float vaultSpeed = 5f;                                           // Vaulting speed
     public float maxSpeed = 20;                                             // Max movement speed
     public bool cameraPanOut = false;                                       // If true, camera will pan out when moving
     public bool cameraFollow = true;                                        // If true, camera will follow when moving
 
-
-    public AudioClip soundClip;
-    public AudioSource audioManager;
-
     //Debug bools
+
     [Header("Debug bools", order = 2)]
     public bool isGrounded;                                                 // Bool to check if player is on ground
-
     public bool canVault;                                                   // Bool to check if player can vault
     public bool isVaulting;                                                 // Bool to check if player is vaulting
     public bool isInteracting;                                              // Bool to check if player is interacting
     public bool cutsceneRunning;                                            // Bool to check if cutscene is running
 
+    public UnityEngine.Events.UnityEvent onEscape;                        // Unity Event for pressing Escape
+
     private void Awake()
     {
-        yarnMemmory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
-
         rb = GetComponent<Rigidbody>();                                     // Set "rb" to Rigidbody of attached Gameobject
         rb.freezeRotation = true;                                           // Disable rotation through rigidbody
         rb.useGravity = false;                                              // Disable Gravity from Rigidbody
 
-        smol = GameObject.Find("Smol");
-
-        player = GetComponent<Transform>();                                 // Set "player" to Transform of attached gameobject
-        capsCollider = GetComponent<CapsuleCollider>();
+        playerTrans = GetComponent<Transform>();                            // Set "player" to Transform of attached gameobject
+        playerCamera = FindObjectOfType<Camera>();                          // Find the only camera in the scene and set it "camera"
         boyAnimations = GetComponent<Animator>();
 
-        playerCamera = FindObjectOfType<Camera>();                          // Find the only camera in the scene and set it "camera"
+        smol = GameObject.Find("Smol");
+        yarnMemmory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
+        capsCollider = GetComponent<CapsuleCollider>();
+
+        audioSrc = GetComponent<AudioSource>();
 
         gravity *= gravityMultiplier;                                       // Apply Gravity Multiplier to player gravity
     }
@@ -70,6 +73,12 @@ public class PlayerController : MonoBehaviour
         CheckVault();
         CameraFollower();
         BoyAnimator();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            onEscape.Invoke();
+        }
+
     }
 
     private void FixedUpdate()
@@ -81,23 +90,25 @@ public class PlayerController : MonoBehaviour
 
     private void MovementInput()
     {
-        yarnMemmory.TryGetValue<bool>("$cutsceneRunning", out bool cutsceneRunning);
+        yarnMemmory.TryGetValue<bool>("$cutsceneRunning", out bool cutsceneRunning);    // Get "$cutsceneRunning" bool from Yarn Program
 
         if (isGrounded && !isVaulting && !cutsceneRunning)
         {
             xAxisMovement = Input.GetAxis("Horizontal") * movementSpeed;                // Get keyboard input for "A", "D" and "Right/Left Arrow", and apply movement speed;
             rb.velocity = new Vector2(xAxisMovement, rb.velocity.y);                    // Apply movement speed and direction to player velocity
 
-            if (xAxisMovement != 0) { 
-                if(!audioManager.isPlaying)
+            if (xAxisMovement != 0)
+            {
+                if (!audioSrc.isPlaying)
                 {
-                    audioManager.PlayOneShot(soundClip);
+                    audioSrc.PlayOneShot(audioSrc.clip, 1.5f);
                 }
             }
             else
             {
-                audioManager.Stop();
+                audioSrc.Stop();
             }
+
             if (rb.velocity.magnitude > maxSpeed)                                       // Clamp player movement speed to max speed
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
@@ -108,16 +119,14 @@ public class PlayerController : MonoBehaviour
                 // Rotate player in movement direction
                 if (rb.velocity.x > 0)
                 {
-                    player.rotation = Quaternion.Euler(0, 0, 0);     // Set player rotation on Y axis to 90 deg
+                    playerTrans.rotation = Quaternion.Euler(0, 0, 0);     // Set player rotation on Y axis to 90 deg
                 }
                 if (rb.velocity.x < 0)
                 {
-                    player.rotation = Quaternion.Euler(0, 180, 0);    // Set player rotation on Y axis to -90 deg
+                    playerTrans.rotation = Quaternion.Euler(0, 180, 0);    // Set player rotation on Y axis to -90 deg
                 }
             }
-           
         }
-
     }
 
     private void BoyAnimator()
@@ -147,7 +156,7 @@ public class PlayerController : MonoBehaviour
         {
             if (canVault)
             {
-                rb.velocity = player.up * vaultSpeed;   // Move player up when vaulting
+                rb.velocity = playerTrans.up * vaultSpeed;   // Move player up when vaulting
             }
 
             if (!canVault)
@@ -159,10 +168,10 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator VaultTimer()    // Timer for when to disable vaulting (set "isVaulting" to false)
     {
-        rb.velocity = player.right * vaultSpeed;
+        rb.velocity = playerTrans.right * vaultSpeed;
 
         if (smol.GetComponent<SmolController>().shouldFollow)
-            smol.GetComponent<Rigidbody>().velocity = player.right * vaultSpeed;
+            smol.GetComponent<Rigidbody>().velocity = playerTrans.right * vaultSpeed;
 
         yield return new WaitForSeconds(0.125f);
         isVaulting = false;
@@ -175,7 +184,7 @@ public class PlayerController : MonoBehaviour
 
         // Raycast for "canVault" bool (true if either raycast hits other object)
         RaycastHit hitInfo;
-        bool vaultCheck = Physics.BoxCast(player.position + new Vector3(0, boxSize.y, 0), boxSize, player.TransformDirection(Vector2.right), out hitInfo, Quaternion.identity, boxSize.x * 1.5f);
+        bool vaultCheck = Physics.BoxCast(playerTrans.position + new Vector3(0, boxSize.y, 0), boxSize, playerTrans.TransformDirection(Vector2.right), out hitInfo, Quaternion.identity, boxSize.x * 1.5f);
 
         if (vaultCheck)
         {
@@ -208,10 +217,10 @@ public class PlayerController : MonoBehaviour
             color = Color.yellow;
         }
 
-        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x * 2.5f, boxSize.y * 2, 0), Vector2.down * boxSize.y * 2, color);    // Front
-        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x, boxSize.y * 2, 0), Vector2.down * boxSize.y * 2, color);           // Rear
-        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x, boxSize.y * 2, 0), player.right * boxSize.x * 1.5f, color);            // Top
-        Debug.DrawRay(player.position + player.TransformDirection(boxSize.x, 0, 0), player.right * boxSize.x * 1.5f, color);                       // Buttom
+        Debug.DrawRay(playerTrans.position + playerTrans.TransformDirection(boxSize.x * 2.5f, boxSize.y * 2, 0), Vector2.down * boxSize.y * 2, color);    // Front
+        Debug.DrawRay(playerTrans.position + playerTrans.TransformDirection(boxSize.x, boxSize.y * 2, 0), Vector2.down * boxSize.y * 2, color);           // Rear
+        Debug.DrawRay(playerTrans.position + playerTrans.TransformDirection(boxSize.x, boxSize.y * 2, 0), playerTrans.right * boxSize.x * 1.5f, color);            // Top
+        Debug.DrawRay(playerTrans.position + playerTrans.TransformDirection(boxSize.x, 0, 0), playerTrans.right * boxSize.x * 1.5f, color);                       // Buttom
 
         // If canVault is true and the player presses space, set "isVaulting" to true
         if (Input.GetKey(KeyCode.Space) && canVault)
@@ -224,7 +233,7 @@ public class PlayerController : MonoBehaviour
     {
         // Size of collision box
         Vector2 boxSize = new Vector2(capsCollider.radius, capsCollider.height / 10);
-        isGrounded = Physics.BoxCast(player.position + new Vector3(0, boxSize.y * 2, 0), boxSize, Vector2.down, Quaternion.identity, boxSize.y + (boxSize.y / 2));
+        isGrounded = Physics.BoxCast(playerTrans.position + new Vector3(0, boxSize.y * 2, 0), boxSize, Vector2.down, Quaternion.identity, boxSize.y + (boxSize.y / 2));
 
         Color color = Color.yellow;
         if (isGrounded)
@@ -236,10 +245,10 @@ public class PlayerController : MonoBehaviour
             color = Color.yellow;
         }
 
-        Debug.DrawRay(player.position + new Vector3(boxSize.x, boxSize.y / 2), new Vector2(0, -boxSize.y), color);              // Front
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, boxSize.y / 2), new Vector2(0, -boxSize.y), color);             // Rear
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, boxSize.y / 2), Vector2.right * (boxSize.x * 2), color);        // Top
-        Debug.DrawRay(player.position + new Vector3(-boxSize.x, -boxSize.y / 2), Vector2.right * (boxSize.x * 2), color);       // Buttom
+        Debug.DrawRay(playerTrans.position + new Vector3(boxSize.x, boxSize.y / 2), new Vector2(0, -boxSize.y), color);              // Front
+        Debug.DrawRay(playerTrans.position + new Vector3(-boxSize.x, boxSize.y / 2), new Vector2(0, -boxSize.y), color);             // Rear
+        Debug.DrawRay(playerTrans.position + new Vector3(-boxSize.x, boxSize.y / 2), Vector2.right * (boxSize.x * 2), color);        // Top
+        Debug.DrawRay(playerTrans.position + new Vector3(-boxSize.x, -boxSize.y / 2), Vector2.right * (boxSize.x * 2), color);       // Buttom
     }
 
     public bool CameraFollow
@@ -266,7 +275,7 @@ public class PlayerController : MonoBehaviour
             }
             cameraPanOut = value;
             if (cameraPanOut)
-                playerPositionOffset = player.position.x;
+                playerPositionOffset = playerTrans.position.x;
         }
     }
 
@@ -278,19 +287,19 @@ public class PlayerController : MonoBehaviour
         {
             if (cameraPanOut && playerCamera.orthographicSize < 7)      // Pan out
             {
-                cameraOffsetY = player.position.x / 10;
-                playerCamera.orthographicSize = originCameraOrthSize + (player.position.x - playerPositionOffset) / 3;
-                playerCamera.transform.position = player.position + new Vector3(0, cameraOffsetY, -2);
+                cameraOffsetY = playerTrans.position.x / 8;
+                playerCamera.orthographicSize = originCameraOrthSize + (playerTrans.position.x - playerPositionOffset) / 3;
+                playerCamera.transform.position = playerTrans.position + new Vector3(0, cameraOffsetY, -2);
             }
 
             if (cameraPanOut)
             {
-                playerCamera.transform.position = player.position + new Vector3(0, cameraOffsetY, -2);
+                playerCamera.transform.position = playerTrans.position + new Vector3(0, cameraOffsetY, -2);
             }
 
             if (!cameraPanOut)
             {
-                playerCamera.transform.position = player.position + new Vector3(0, 2, -2);
+                playerCamera.transform.position = playerTrans.position + new Vector3(0, 2, -2);
             }
         }
         else

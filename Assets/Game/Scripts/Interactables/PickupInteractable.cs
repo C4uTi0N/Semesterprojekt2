@@ -1,15 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class PickupInteractable : MonoBehaviour, Interactable
 {
-    public AudioSource audioManager;
     public UnityEngine.Events.UnityEvent onInteract;
+    private AudioSource audioSrc;
     private Inventory inventory;
-    public AudioClip soundClip;
-
 
     public void Awake()
     {
+        audioSrc = GetComponent<AudioSource>();
         inventory = GameObject.Find("Player Character").GetComponent<Inventory>();
     }
 
@@ -21,8 +22,15 @@ public class PickupInteractable : MonoBehaviour, Interactable
     public void onInteraction()
     {
         onInteract.Invoke();
-        audioManager.PlayOneShot(soundClip);
+        audioSrc.PlayOneShot(audioSrc.clip);
         inventory.addToInventory(name);
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    IEnumerator DestroyTimer()
+    {
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 }

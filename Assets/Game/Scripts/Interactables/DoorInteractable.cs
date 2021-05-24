@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class DoorInteractable : MonoBehaviour, Interactable
 {
     public SmolController smolController;
@@ -7,8 +8,12 @@ public class DoorInteractable : MonoBehaviour, Interactable
     public string pressETo = " enter/go to [destination name]";
     public UnityEngine.Events.UnityEvent onInteract;
 
-    public AudioClip soundClip;
-    public AudioSource audioManager;
+    private AudioSource audioSrc;
+
+    private void Awake()
+    {
+        audioSrc = GetComponent<AudioSource>();
+    }
 
     public string getInteractableText()
     {
@@ -36,13 +41,13 @@ public class DoorInteractable : MonoBehaviour, Interactable
             if (smolController.shouldFollow)
             {
                 onInteract.Invoke();
-                audioManager.PlayOneShot(soundClip);
+                audioSrc.PlayOneShot(audioSrc.clip);
             }
         }
         else
         {
             onInteract.Invoke();
-            audioManager.PlayOneShot(soundClip);
+            audioSrc.PlayOneShot(audioSrc.clip);
         }
     }
 }

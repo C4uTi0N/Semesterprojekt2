@@ -103,9 +103,9 @@ Smol: Weeee!
 Big: Alright, that's enough.
 Big: We have to get going.
 Smol: Hmph, okay.
+<<set $cutsceneRunning to false>>
 Smol: Can we come back later?
 Big: Sure
-<<set $cutsceneRunning to false>>
 
 ===
 title: keepGoing

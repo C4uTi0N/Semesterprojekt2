@@ -1,18 +1,21 @@
+using System.Collections;
 using UnityEngine;
 using Yarn.Unity;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(Animator))]
 public class SmolController : MonoBehaviour
 {
-    private InMemoryVariableStorage yarnMemory;
     private Rigidbody rb;
-    private Animator girlAnimations;
-    public Transform target;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private PlayerController playerController;
-
-
-    public AudioClip soundClip;
-    public AudioSource audioManager;
+    private InMemoryVariableStorage yarnMemory;
+    private AudioSource audioSrc;
+    public Transform target;
+    public GameObject swingUsable;
+    public GameObject smolOnSwing;
 
     private float distance;
 
@@ -26,10 +29,12 @@ public class SmolController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        girlAnimations = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         playerController = GameObject.Find("Player Character").GetComponent<PlayerController>();
-
         yarnMemory = GameObject.Find("Dialogue Runner").GetComponent<InMemoryVariableStorage>();
+
+        audioSrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -56,24 +61,42 @@ public class SmolController : MonoBehaviour
 
         distance = Vector2.Distance(rb.position, target.position);
 
-        
         if (shouldFollow)
         {
-           
             if (distance > minDistance)
             {
-                girlAnimations.SetBool("playAnimation", true);      //Starts animation if she's moving
+                animator.SetBool("playAnimation", true);      //Starts animation if she's moving
                 rb.position = Vector2.Lerp(transform.position, target.position, speed / 100);
-                if (!audioManager.isPlaying)
+                if (!audioSrc.isPlaying)
                 {
-                    audioManager.PlayOneShot(soundClip);
+                    audioSrc.PlayOneShot(audioSrc.clip, 1);
                 }
             }
             else
             {
-                girlAnimations.SetBool("playAnimation", false);   //Stops animation if she's not moving;
-                audioManager.Stop();
+                animator.SetBool("playAnimation", false);   //Stops animation if she's not moving;
+                audioSrc.Stop();
             }
         }
+
+        if (yarnMemory.TryGetValue<bool>("$cutsceneRunning", out bool cutsceneRunning))
+        {
+            if (smolOnSwing.activeSelf)
+            {
+                if (!cutsceneRunning)
+                {
+                    smolOnSwing.SetActive(false);
+                    spriteRenderer.enabled = true;
+                    swingUsable.SetActive(true);
+                }
+            }
+        }
+    }
+
+    public void SmolOnSwing()
+    {
+        smolOnSwing.SetActive(true);
+        spriteRenderer.enabled = false;
+        swingUsable.SetActive(false);
     }
 }
