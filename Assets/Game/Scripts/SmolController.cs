@@ -23,6 +23,7 @@ public class SmolController : MonoBehaviour
     public float minDistance = 2;
 
     public bool shouldFollow = false;
+    public bool shouldVault = false;
 
     private void Awake()
     {
@@ -40,7 +41,10 @@ public class SmolController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (shouldFollow && playerController.isVaulting)
+        yarnMemory.TryGetValue<bool>("$smolFollow", out var smolFollow);
+        shouldFollow = smolFollow;
+
+        if (shouldVault && playerController.isVaulting)
         {
             rb.position = Vector3.Lerp(rb.position, playerController.transform.position + new Vector3(-0.1f, 0.5f, 1), 0.1f);
         }
@@ -48,7 +52,6 @@ public class SmolController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        shouldFollow = yarnMemory.TryGetValue<bool>("$smolFollow", out var smolFollow);
 
         if (rb.position.x < target.position.x)
         {
@@ -90,6 +93,19 @@ public class SmolController : MonoBehaviour
                     swingUsable.SetActive(true);
                 }
             }
+        }
+    }
+
+    public bool ShouldVault
+    {
+        get { return shouldVault; }
+        set
+        {
+            if (value == shouldVault)
+            {
+                return;
+            }
+            shouldVault = value;
         }
     }
 

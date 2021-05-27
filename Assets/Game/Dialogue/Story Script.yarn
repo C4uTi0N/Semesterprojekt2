@@ -126,11 +126,11 @@ tags:
 ---
 <<set $cutsceneRunning to true>>
 Smol: Eeeek!
+<<set $smolFollow to false>>
 Big: Don't worry, it can't reach us.
 Smol: How are we gonna get home now?
 Big: We'll figure it out later.
 <<set $cutsceneRunning to false>>
-
 
 ===
 title: balcony
@@ -142,18 +142,25 @@ Big: Hmm, that balcony looks weak
 <<set $cutsceneRunning to false>>
 
 ===
-title: slope
+title: smolMove
 tags:
 ---
-Smol: Weee!
-Big: Shush! There might be more of them...
-Smol: *whisper* Weee...
+<<set $smolFollow to true>>
 
 ===
 title: hospital
 tags:
 ---
-Smol: Ther!... *whisper* oops - there it is.
+<<set $cutsceneRunning to true>>
+Smol: Ther!... 
+Big: SHHH!
+smol: *whisper* there it is.
 Big: I told you it was close, didn't i?
+<<set $cutsceneRunning to false>>
+
+===
+title: end
+tags:
+---
 
 ===

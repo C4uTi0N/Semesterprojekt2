@@ -170,8 +170,8 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = playerTrans.right * vaultSpeed;
 
-        if (smol.GetComponent<SmolController>().shouldFollow)
-            smol.GetComponent<Rigidbody>().velocity = playerTrans.right * vaultSpeed;
+        if (smol.GetComponent<SmolController>().shouldVault)
+            smol.GetComponent<Rigidbody>().velocity = playerTrans.right * (vaultSpeed / 2);
 
         yield return new WaitForSeconds(0.125f);
         isVaulting = false;
